@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Player API Chaptering Example</title>
+		<style>
+    body {
+      font-family: Helvetica,Arial,sans-serif;
+    }
+    .BrightcoveExperience {
+      margin-left: 5px;
+    }
+    .BCL_playlist {
+      border: 1px #999 solid;
+      font-size: 10px;
+      text-align: center;
+      height: 150px;
+      width: 600px;
+      overflow: scroll;
+    }
+    .BCL_chapter {
+      border-right: 1px #999 solid;
+      padding: 3px;
+    }
+    </style>
+	</head>
+	<body>
+		<h1>Player API Chaptering Example</h1>
+		<p>The player below plays playlists. The "playlist" below the player is a set of chapters that are defined by <strong>code</strong> cue points set in the video. The cue point <strong>name</strong> is the name of the chapter, and the cue point <strong>metadata</strong> contains the URL for a thumbnail image.</p>
+		<p><small><em>The buttons below are for development purposes only, to switch between Flash and  HTML5 players. Do not use these in production, as the method is unsupported. You should let the Smart Player decide whether to load Flash or HTML5 instead</em>.</small></p>
+		<div id="modeSwitch">
+			<button onclick="BCL.switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</button>
+			<button onclick="BCL.switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</button>
+		</div>
+		<!-- Start of Brightcove Player -->
+		<div style="display:none">
+		Do not delete!
+		</div>
+		<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+
+		<object id="myExperience" class="BrightcoveExperience">
+		  <param name="bgcolor" value="#FFFFFF" />
+		  <param name="width" value="960" />
+		  <param name="height" value="445" />
+		  <param name="playerID" value="1651420050001" />
+		  <param name="playerKey" value="AQ~~,AAAA1oy1bvE~,ALl2ezBj3WEh_ESE4RYJUGyoTZueLq5e" />
+		  <param name="isVid" value="true" />
+		  <param name="isUI" value="true" />
+		  <param name="dynamicStreaming" value="true" />
+		    <!-- params for Universal Player API -->
+		  <param name="includeAPI" value="true" />
+		  <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+		</object>
+
+		<!--
+		This script tag will cause the Brightcove Players defined above it to be created as soon
+		as the line is read by the browser. If you wish to have the player instantiated only after
+		the rest of the HTML is processed and the page load is complete, remove the line.
+		-->
+		<script type="text/javascript">brightcove.createExperiences();</script>
+
+		<!-- End of Brightcove Player -->
+		<p>Chapter Selector</p>
+		<div id="BCL_playlist" class="BCL_playlist"></div>
+		<!-- include handlebars.js templating system -->
+		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.0.beta.6.js"></script>
+		<script type="text/javascript">
+			// namespace for everything global
+			var BCL = {};
+			// define the template for the chapters list
+			BCL.chaptersTemplate = "<table><tbody><tr>{{#cuePointData}}<td class=\"BCL_chapter\" onclick=\"BCL.playChapter({{time}})\"><img class=\"thumbnail\" height=\"120\" width=\"164\" src=\"{{metadata}}\"/><br />{{name}}</td>{{/cuePointData}}</tr></tbody></table>";
+			// event listener for the player being ready
+			BCL.onTemplateReady = function(event) {
+			  // get modules
+			  BCL.player = brightcove.api.getExperience("myExperience");
+				BCL.videoPlayer = BCL.player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
+			  BCL.cuePointsModule = BCL.player.getModule(brightcove.api.modules.APIModules.CUE_POINTS);
+			  // add listener for media change
+			  BCL.videoPlayer.addEventListener(brightcove.api.events.MediaEvent.CHANGE, BCL.onMediaChange);
+			  // call the change event handler to execute it for the initial video
+			  BCL.onMediaChange(null);
+			}
+			// media change handler
+			BCL.onMediaChange = function(evtObject){
+				BCL.videoPlayer.getCurrentVideo( function(videoDTO) {
+					// call getCuePoints
+					BCL.getCuePoints(videoDTO.id);
+				});
+			}
+			// function get cue points
+			BCL.getCuePoints = function(videoID) {
+			  BCL.cuePointsModule.getCuePoints(videoID, function(cuePointData) {
+				  // make an object to pass to Handlebars
+				  var cuePointDataObj = {};
+				  // sort the array to get cue points in order
+				  cuePointData.sort( function(a,b) {
+					  return a.time - b.time;
+				  });
+				  // remove the preroll and postroll cue points
+				  cuePointData.splice(0,1);
+				  cuePointData.splice((cuePointData.length -1),1);
+				  // add the cue point data to the data object for Handlebars
+				  cuePointDataObj.cuePointData = cuePointData;
+				  // populate the template with data - standard Handlebars procedure here
+				  var template = Handlebars.compile(BCL.chaptersTemplate);
+				  var data = cuePointDataObj;
+				  var results = template(data);
+				  // inject the results into the page
+				  document.getElementById("BCL_playlist").innerHTML = results;
+				  // start the video
+				  BCL.videoPlayer.play();
+			  })
+			}
+			// play a chapter
+			BCL.playChapter = function(time) {
+				console.log("starting the chapter");
+				// if the video is not playing, start it and function calls itself again
+				BCL.videoPlayer.getIsPlaying(function(data) {
+				  if (data == true) {
+				    BCL.videoPlayer.seek(time);
+				  }
+				  else {
+				    // function recalls itself till result is true
+				    BCL.videoPlayer.play();
+				    BCL.playChapter(time);
+				  }
+				});
+			}
+			// for development purposes only: reopen page with HTML5 player
+			BCL.switchToHTML5 = function() {
+				var separator = "?";
+				if (document.location.href.indexOf("?", 0) > -1) {
+					separator = "&";
+				}
+				window.location = document.location.href + separator + "forceHTML=true";
+			};
+			// for development purposes only: switch back to Flash
+			BCL.switchToFlash = function() {
+				var startOfQuery = document.location.href.indexOf("forceHTML", 0) - 1;
+				window.location = document.location.href.substring(0, startOfQuery);
+			};
+			// wrapper for logging
+			BCL.log = function(message) {
+			  if (window["console"] && console["log"]) {
+			    var d = Date.now();
+			    d = d.toLocaleString();
+			    console.log(d + ": " + message);
+			  }
+			}
+		</script>
+	</body>
+</html>

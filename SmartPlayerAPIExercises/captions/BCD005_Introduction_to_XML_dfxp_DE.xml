@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">  
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="de">      
+<p begin="00:00:00.00" end="00:00:00.56" style="1"><br/></p> 
+<p begin="00:00:00.56" end="00:00:03.62" style="1">In diesem Video erhalten Sie Informationen über<br/>die Grundregeln von XML.</p> 
+<p begin="00:00:03.62" end="00:00:06.00" style="1">Brightcove verwendet XML<br/>auf unterschiedliche Weise.</p> 
+<p begin="00:00:06.00" end="00:00:08.70" style="1">Zum Erstellen von Playervorlagen in der Brightcove Experience<br/>Markup Language (BEML).</p> 
+<p begin="00:00:08.70" end="00:00:10.18" style="1"><br/></p> 
+<p begin="00:00:10.18" end="00:00:13.13" style="1">In Manifest-Dateien für<br/>die Batch-Bereitstellung.</p> 
+<p begin="00:00:13.13" end="00:00:15.24" style="1">Und in Dateien zum Aufzeichnen<br/>für Untertitel</p> 
+<p begin="00:00:15.24" end="00:00:17.74" style="1">über<br/>die Player-API.</p> 
+<p begin="00:00:17.74" end="00:00:20.22" style="1">Diese Lösung ist aufgrund der Flexibilität<br/> des XML-Frameworks </p>
+<p begin="00:00:20.22" end="00:00:22.33" style="1">für unterschiedliche<br/>Zwecke sinnvoll.</p>
+<p begin="00:00:22.33" end="00:00:24.97" style="1">Mit einem grundsätzlichen Verständnis<br/>der XML-Syntaxregeln </p>
+<p begin="00:00:24.97" end="00:00:28.31" style="1">können Sie leicht mit diesen oder anderen</p> 
+<p begin="00:00:28.31" end="00:00:29.69" style="1">XML-Sprachen arbeiten.<br/></p> 
+<p begin="00:00:29.69" end="00:00:31.50" style="1">Lassen Sie uns sofort beginnen.<br/></p> 
+<p begin="00:00:31.50" end="00:00:34.49" style="1">XML-Sprachen bestehen zunächst<br/>aus drei Arten von</p> 
+<p begin="00:00:34.49" end="00:00:35.42" style="1">Entitäten.<br/></p> 
+<p begin="00:00:35.42" end="00:00:39.02" style="1">Sie bestehen aus Tags, auch Elemente oder Knoten genannt,<br/></p> 
+<p begin="00:00:39.02" end="00:00:41.53" style="1">Tag-Attributen und Daten.<br/></p> 
+<p begin="00:00:41.53" end="00:00:44.93" style="1">Einige XML-Dokumente enthalten<br/>keine Daten, aber dennoch</p> 
+<p begin="00:00:44.93" end="00:00:47.31" style="1">Tags und Attribute.<br/></p> 
+<p begin="00:00:47.31" end="00:00:50.74" style="1">Tags sind die grundlegenden<br/>Bausteine von XML-Sprachen,</p> 
+<p begin="00:00:50.74" end="00:00:53.71" style="1">und sie werden durch spitze Klammern<br/>begrenzt.</p> 
+<p begin="00:00:53.71" end="00:00:55.57" style="1">Alle Tags müssen geschlossen sein.<br/></p> 
+<p begin="00:00:55.57" end="00:00:58.74" style="1">Das Endtag entspricht<br/>dem Starttag, außer dass</p> 
+<p begin="00:00:58.74" end="00:01:02.57" style="1">der Name des Tags mit einem<br/>Schrägstrich beginnt.</p> 
+<p begin="00:01:02.57" end="00:01:05.91" style="1">Falls ein Tag<br/>keine anderen Tags oder</p> 
+<p begin="00:01:05.91" end="00:01:09.50" style="1">Daten enthält, können Sie auch ein<br/>selbstschließendes Tag mit</p> 
+<p begin="00:01:09.50" end="00:01:12.29" style="1">dem Schrägstrich vor<br/>der schließenden spitzen Klammer im</p> 
+<p begin="00:01:12.29" end="00:01:13.78" style="1">Starttag verwenden.<br/></p> 
+<p begin="00:01:13.78" end="00:01:17.27" style="1">Jedes Attribut,<br/>das eine Tageigenschaft beschreibt,</p> 
+<p begin="00:01:17.27" end="00:01:20.63" style="1">befindet sich im Starttag.<br/>Die Form entspricht:</p> 
+<p begin="00:01:20.63" end="00:01:24.58" style="1">Attributname = Wert, wobei<br/>der Wert immer durch</p> 
+<p begin="00:01:24.58" end="00:01:25.98" style="1">Anführungszeichen begrenzt wird.<br/></p> 
+<p begin="00:01:25.98" end="00:01:29.92" style="1">Bei allen Tag- und Attributnamen muss<br/>die Groß-/Kleinschreibung beachtet werden, d. h.,</p> 
+<p begin="00:01:29.92" end="00:01:34.51" style="1">der Tagname „Label“ mit groß geschriebenem L<br/>ist nicht mit „label“ mit klein</p> 
+<p begin="00:01:34.51" end="00:01:35.89" style="1">geschriebenem l identisch.<br/></p> 
+<p begin="00:01:35.89" end="00:01:38.80" style="1">Beide Tags können quasi<br/>in derselben Sprache </p>
+<p begin="00:01:38.80" end="00:01:41.03" style="1">mit unterschiedlicher Funktion vorkommen.<br/></p> 
+<p begin="00:01:41.03" end="00:01:44.02" style="1">Unter Umständen sind<br/>die Werte eines Attributs</p> 
+<p begin="00:01:44.02" end="00:01:47.53" style="1">festgelegt, dann<br/>muss auch bei den Werten die Groß-/Kleinschreibung</p> 
+<p begin="00:01:47.53" end="00:01:48.72" style="1">beachtet werden.<br/></p> 
+<p begin="00:01:48.72" end="00:01:52.05" style="1">Tags<br/>müssen korrekt verschachtelt sein.</p> 
+<p begin="00:01:52.05" end="00:01:57.12" style="1">Öffnen Sie z. B. ein HBox-<br/>Tag in einem Layout-Tag</p> 
+<p begin="00:01:57.12" end="00:02:01.37" style="1">(wie in diesem BEML-Beispiel), muss<br/>auch das HBox-Tag vor dem</p> 
+<p begin="00:02:01.37" end="00:02:03.41" style="1">Layout-Tag geschlossen werden.<br/></p> 
+<p begin="00:02:03.41" end="00:02:08.64" style="1">Alle Daten müssen<br/>in das Tag eingebettet werden.</p> 
+<p begin="00:02:08.64" end="00:02:12.63" style="1">XML-Sprachen haben zudem ein Root-<br/>Tag, d. h.,</p> 
+<p begin="00:02:12.63" end="00:02:16.42" style="1">alle Tags müssen innerhalb<br/>des Root-Tags stehen.</p> 
+<p begin="00:02:16.42" end="00:02:20.07" style="1">Es gibt zudem einige spezielle<br/>Tag-ähnliche Entitäten, die nicht</p> 
+<p begin="00:02:20.07" end="00:02:23.94" style="1">zu dieser speziellen XML-<br/>Sprache gehören, die aber in jedem</p> 
+<p begin="00:02:23.94" end="00:02:25.99" style="1">XML-Dokument anwendbar sind.<br/></p> 
+<p begin="00:02:25.99" end="00:02:29.71" style="1">Eine davon ist der CDATA-Wrapper.<br/>Dieser Wrapper bettet Daten in Ihr Dokument</p> 
+<p begin="00:02:29.71" end="00:02:33.31" style="1">ein und verhindert so, dass<br/>ein XML-Prozessor</p> 
+<p begin="00:02:33.31" end="00:02:36.31" style="1">versucht, Ihre Daten<br/>als XML-Code zu interpretieren.</p> 
+<p begin="00:02:36.31" end="00:02:38.62" style="1">Dieser Wrapper ist nur<br/>notwendig, wenn Ihre</p> 
+<p begin="00:02:38.62" end="00:02:41.71" style="1">Daten Elemente enthalten, die<br/>mit XML-Code verwechselbar sind.</p> 
+<p begin="00:02:41.71" end="00:02:45.42" style="1">Wenn Sie den Wrapper verwenden, sind Sie jedoch<br/>auf der sicheren Seite.</p> 
+<p begin="00:02:45.42" end="00:02:49.09" style="1">Die XML-Deklaration steht am<br/>Anfang des Dokuments</p> 
+<p begin="00:02:49.09" end="00:02:52.00" style="1">und teilt dem<br/>Prozessor (z. B. ein Browser</p> 
+<p begin="00:02:52.00" end="00:02:55.21" style="1">oder ein Editor) mit, welcher<br/>Version der XML-</p> 
+<p begin="00:02:55.21" end="00:02:58.28" style="1">Spezifikation das Dokument<br/>entspricht.</p> 
+<p begin="00:02:58.28" end="00:03:01.04" style="1">Die DOCTYPE-Deklaration<br/>gibt die</p> 
+<p begin="00:03:01.04" end="00:03:06.02" style="1">Dokumenttypdefinition (DTD)<br/>an, die die Regeln für die von Ihnen jeweils verwendete</p> 
+<p begin="00:03:06.02" end="00:03:08.98" style="1">XML-Sprache<br/>definiert.</p> 
+<p begin="00:03:08.98" end="00:03:12.19" style="1">Diese Funktion ist besonders bei der Verwendung<br/>eines XML-Editors wie in diesem Beispiel nützlich.</p> 
+<p begin="00:03:12.19" end="00:03:15.37" style="1">Der Editor<br/>versteht die Regeln der</p> 
+<p begin="00:03:15.37" end="00:03:18.31" style="1">Sprache und hilft Ihnen z. B.<br/>bei der Codevervollständigung,</p> 
+<p begin="00:03:18.31" end="00:03:22.05" style="1">der Gültigkeitsprüfung auf<br/>Fehler sowie</p> 
+<p begin="00:03:22.05" end="00:03:25.91" style="1">bei der Syntaxhervorhebung,<br/>die solche Editor-Programme für gewöhnlich bereitstellen.</p> 
+<p begin="00:03:25.91" end="00:03:28.52" style="1">Diese Tools sparen Zeit<br/>und vermindern Frustration bei der Arbeit</p> 
+<p begin="00:03:28.52" end="00:03:31.95" style="1">mit XML. Wir empfehlen Ihnen daher,<br/>zur Erleichterung Ihrer Arbeit über die Anschaffung eines XML-Editors nachzudenken.</p> 
+<p begin="00:03:31.95" end="00:03:33.65" style="1"><br/></p> 
+<p begin="00:03:33.65" end="00:03:37.18" style="1">In diesem Beispiel wurde<br/>Xmplify verwendet, ein kostengünstiger Editor,</p> 
+<p begin="00:03:37.18" end="00:03:40.88" style="1">verfügbar unter xmplifyapp.com.<br/>Es gibt aber auch zahlreiche andere,</p> 
+<p begin="00:03:40.88" end="00:03:44.77" style="1">die Sie bei der Onlinesuche nach XML-Editoren<br/>finden.</p> 
+<p begin="00:03:44.77" end="00:03:46.07" style="1"><br/></p>    
+</div>  
+</body>
+</tt>

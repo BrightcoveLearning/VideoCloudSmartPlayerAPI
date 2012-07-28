@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="es">
+<p begin="00:00:00.00" end="00:00:00.56" style="1"><br/></p>
+<p begin="00:00:00.56" end="00:00:03.62" style="1">Veamos las reglas básicas de XML.<br/></p>
+<p begin="00:00:03.62" end="00:00:06.00" style="1">Brightcove usa XML de varias maneras:<br/></p>
+<p begin="00:00:06.00" end="00:00:08.70" style="1">En Brightcove Markup Language (BEML),<br/> para crear plantillas de reproductores.</p>
+<p begin="00:00:08.70" end="00:00:10.18" style="1"><br/></p>
+<p begin="00:00:10.18" end="00:00:13.13" style="1">En archivos de manifiesto para<br/>transferencias por lotes.</p>
+<p begin="00:00:13.13" end="00:00:15.24" style="1">Y durante la captura de archivos para<br/>mostrar títulos o subtítulos</p>
+<p begin="00:00:15.24" end="00:00:17.74" style="1">mediante la biblioteca de Player API.<br/></p>
+<p begin="00:00:17.74" end="00:00:20.22" style="1">El entorno de XML es muy flexible y permite<br/>usos muy diferentes.</p>
+<p begin="00:00:20.22" end="00:00:22.33" style="1"><br/></p>
+<p begin="00:00:22.33" end="00:00:24.97" style="1">Cuando conozca la sintaxis básica de XML,<br/>verá qué fácil es trabajar</p>
+<p begin="00:00:24.97" end="00:00:28.31" style="1">con lenguajes de la familia XML.<br/></p>
+<p begin="00:00:28.31" end="00:00:29.69" style="1"><br/></p>
+<p begin="00:00:29.69" end="00:00:31.50" style="1">¡Manos a la obra!<br/></p>
+<p begin="00:00:31.50" end="00:00:34.49" style="1">Los lenguajes XML usan tres tipos de entidades:<br/></p>
+<p begin="00:00:34.49" end="00:00:35.42" style="1"><br/></p>
+<p begin="00:00:35.42" end="00:00:39.02" style="1">etiquetas, también llamadas elementos o nodos,<br/></p>
+<p begin="00:00:39.02" end="00:00:41.53" style="1">atributos de etiquetas y datos.<br/></p>
+<p begin="00:00:41.53" end="00:00:44.93" style="1">Hay documentos XML sin datos, pero todos<br/>tienen etiquetas y atributos.</p>
+<p begin="00:00:44.93" end="00:00:47.31" style="1"><br/></p>
+<p begin="00:00:47.31" end="00:00:50.74" style="1">Las etiquetas son el elemento esencial<br/>de todos los lenguajes XML</p>
+<p begin="00:00:50.74" end="00:00:53.71" style="1">y se delimitan con paréntesis angulares.<br/></p>
+<p begin="00:00:53.71" end="00:00:55.57" style="1">Las etiquetas no pueden quedarse abiertas.<br/></p>
+<p begin="00:00:55.57" end="00:00:58.74" style="1">La etiqueta de cierre es idéntica<br/>a la de apertura, sólo que va precedida</p>
+<p begin="00:00:58.74" end="00:01:02.57" style="1">de una barra inclinada.<br/></p>
+<p begin="00:01:02.57" end="00:01:05.91" style="1">Si una etiqueta no contiene otras etiquetas<br/>ni datos, también puede usarse</p>
+<p begin="00:01:05.91" end="00:01:09.50" style="1">una etiqueta de autocierre con la barra inclinada<br/>antes del paréntesis angular de cierre</p>
+<p begin="00:01:09.50" end="00:01:12.29" style="1">de la etiqueta de apertura.<br/></p>
+<p begin="00:01:12.29" end="00:01:13.78" style="1"><br/></p>
+<p begin="00:01:13.78" end="00:01:17.27" style="1">Todos los atributos que definan<br/>propiedades de la etiqueta va incluidos</p>
+<p begin="00:01:17.27" end="00:01:20.63" style="1">en la etiqueta de apertura con este formato:<br/> nombre atributo = "valor",</p>
+<p begin="00:01:20.63" end="00:01:24.58" style="1">con el valor entre comillas dobles.<br/></p>
+<p begin="00:01:24.58" end="00:01:25.98" style="1"><br/></p>
+<p begin="00:01:25.98" end="00:01:29.92" style="1">Los nombres de etiquetas y atributos distinguen<br/>mayúsculas y minúsculas.</p>
+<p begin="00:01:29.92" end="00:01:34.51" style="1">Una etiqueta Label es distinta a otra denominada label.<br/></p>
+<p begin="00:01:34.51" end="00:01:35.89" style="1"><br/></p>
+<p begin="00:01:35.89" end="00:01:38.80" style="1">Ambas etiquetas pueden coexistir en el mismo<br/>lenguaje y tener usos distintos.</p>
+<p begin="00:01:38.80" end="00:01:41.03" style="1"><br/></p>
+<p begin="00:01:41.03" end="00:01:44.02" style="1">Al especificar los valores de un atributo,<br/>se distinguen mayúsculas y minúsculas.</p>
+<p begin="00:01:44.02" end="00:01:47.53" style="1"><br/></p>
+<p begin="00:01:47.53" end="00:01:48.72" style="1"><br/></p>
+<p begin="00:01:48.72" end="00:01:52.05" style="1">Además, las etiquetas se deben intercalar<br/>en jerarquía (anidar) correctamente;</p>
+<p begin="00:01:52.05" end="00:01:57.12" style="1">si abro una etiqueta hbox dentro de una etiqueta<br/>layout, como en este ejemplo en BEML,</p>
+<p begin="00:01:57.12" end="00:02:01.37" style="1">debo cerrar la etiqueta hbox antes que la layout.<br/></p>
+<p begin="00:02:01.37" end="00:02:03.41" style="1">c<br/></p>
+<p begin="00:02:03.41" end="00:02:08.64" style="1">Igualmente, los datos se anidan dentro de la etiqueta.<br/></p>
+<p begin="00:02:08.64" end="00:02:12.63" style="1">Los lenguajes XML usan una etiqueta raíz<br/>en la que anidan las demás etiquetas.</p>
+<p begin="00:02:12.63" end="00:02:16.42" style="1"><br/></p>
+<p begin="00:02:16.42" end="00:02:20.07" style="1">También hay entidades especiales,<br/>similares a etiquetas, que no forman parte</p>
+<p begin="00:02:20.07" end="00:02:23.94" style="1">de este lenguaje XML concreto, pero que pueden<br/>usarse en documentos XML.</p>
+<p begin="00:02:23.94" end="00:02:25.99" style="1"><br/></p>
+<p begin="00:02:25.99" end="00:02:29.71" style="1">Una de ellas es CDATA wrapper, que permite<br/>"envolver" datos para impedir</p>
+<p begin="00:02:29.71" end="00:02:33.31" style="1">que se procesen como código XML.<br/></p>
+<p begin="00:02:33.31" end="00:02:36.31" style="1"><br/></p>
+<p begin="00:02:36.31" end="00:02:38.62" style="1">No es necesario usar este wrapper<br/>si los datos no contienen información</p>
+<p begin="00:02:38.62" end="00:02:41.71" style="1">que pueda confundirse con código XML,<br/>, pero es bueno usarlo para más seguridad.</p>
+<p begin="00:02:41.71" end="00:02:45.42" style="1"><br/></p>
+<p begin="00:02:45.42" end="00:02:49.09" style="1">Sigue la declaración de XML, que se indica<br/>al principio del documento y especifica</p>
+<p begin="00:02:49.09" end="00:02:52.00" style="1">un procesador (p. ej. navegador o editor)<br/> y la especificación XML del documento</p>
+<p begin="00:02:52.00" end="00:02:55.21" style="1"><br/></p>
+<p begin="00:02:55.21" end="00:02:58.28" style="1"><br/></p>
+<p begin="00:02:58.28" end="00:03:01.04" style="1">Viene luego la declaración DOCTYPE,<br/>que define el tipo de documento (DTD)</p>
+<p begin="00:03:01.04" end="00:03:06.02" style="1">que contiene la reglas del lenguaje XML<br/>concreto que se esté usando.</p>
+<p begin="00:03:06.02" end="00:03:08.98" style="1"><br/></p>
+<p begin="00:03:08.98" end="00:03:12.19" style="1">Esto es muy útil al usar editores de XML,<br/>ya que interpretan las reglas</p>
+<p begin="00:03:12.19" end="00:03:15.37" style="1">del lenguaje y comprueban si el código<br/>está completo o contienen errores,</p>
+<p begin="00:03:15.37" end="00:03:18.31" style="1">además de resaltar los códigos.<br/></p>
+<p begin="00:03:18.31" end="00:03:22.05" style="1"><br/></p>
+<p begin="00:03:22.05" end="00:03:25.91" style="1"><br/></p>
+<p begin="00:03:25.91" end="00:03:28.52" style="1">Los editores XML ahorran tiempo<br/>y la tediosa labor de manipular</p>
+<p begin="00:03:28.52" end="00:03:31.95" style="1">código XML; son muy recomendables.<br/></p>
+<p begin="00:03:31.95" end="00:03:33.65" style="1"><br/></p>
+<p begin="00:03:33.65" end="00:03:37.18" style="1">Aquí utilizo Xmplify, un editor asequible<br/>disponible en xmplifyapp.com,</p>
+<p begin="00:03:37.18" end="00:03:40.88" style="1">pero encontrará muchos si busca "editor XML"<br/>en Internet.</p>
+<p begin="00:03:40.88" end="00:03:44.77" style="1"><br/></p>
+<p begin="00:03:44.77" end="00:03:46.07" style="1"><br/></p>
+</div>
+</body>
+</tt>

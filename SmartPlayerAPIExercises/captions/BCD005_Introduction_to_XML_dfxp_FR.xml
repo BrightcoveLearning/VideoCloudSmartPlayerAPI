@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="fr">
+<p begin="00:00:00.00" end="00:00:00.56" style="1"><br/></p>
+<p begin="00:00:00.56" end="00:00:03.62" style="1">Dans cette vidéo, vous apprendrez<br/>les règles de base du XML.</p>
+<p begin="00:00:03.62" end="00:00:06.00" style="1">Brightcove utilise le XML<br/>de plusieurs façons.</p>
+<p begin="00:00:06.00" end="00:00:08.70" style="1">Dans le Langage de balisage<br/>de Brightcove, ou BEML, pour</p>
+<p begin="00:00:08.70" end="00:00:10.18" style="1">créer des modèles de lecteur.<br/></p>
+<p begin="00:00:10.18" end="00:00:13.13" style="1">Dans les fichiers de manifeste<br/>pour le transfert batch.</p>
+<p begin="00:00:13.13" end="00:00:15.24" style="1">Et lors de la capture de<br/>fichiers pour afficher une</p>
+<p begin="00:00:15.24" end="00:00:17.74" style="1">légende ou des sous-titres<br/>via l'API de lecteur.</p>
+<p begin="00:00:17.74" end="00:00:20.22" style="1">La flexibilité de l'infrastructure<br/>XML le rend très utile</p>
+<p begin="00:00:20.22" end="00:00:22.33" style="1">dans chacun de<br/>ces cas.</p>
+<p begin="00:00:22.33" end="00:00:24.97" style="1">Lorsque vous aurez assimilé<br/>les bases de la syntaxe XML,</p>
+<p begin="00:00:24.97" end="00:00:28.31" style="1">cela vous paraîtra facile<br/>de travailler dans ces cas et</p>
+<p begin="00:00:28.31" end="00:00:29.69" style="1">avec d'autres langages XML.<br/></p>
+<p begin="00:00:29.69" end="00:00:31.50" style="1">Mettons-nous au travail !<br/></p>
+<p begin="00:00:31.50" end="00:00:34.49" style="1">Premièrement, les langages<br/>XML comportent trois</p>
+<p begin="00:00:34.49" end="00:00:35.42" style="1">types d'entités.<br/></p>
+<p begin="00:00:35.42" end="00:00:39.02" style="1">Les balises (aussi appelées<br/>éléments ou nœuds), </p>
+<p begin="00:00:39.02" end="00:00:41.53" style="1">les attributs des balises et<br/>les données.</p>
+<p begin="00:00:41.53" end="00:00:44.93" style="1">Certains documents XML ne<br/>contiennent pas de données, </p>
+<p begin="00:00:44.93" end="00:00:47.31" style="1">mais ont des balises et des attributs.<br/></p>
+<p begin="00:00:47.31" end="00:00:50.74" style="1">Les balises sont les<br/>composants de base</p>
+<p begin="00:00:50.74" end="00:00:53.71" style="1">du XML et sont délimitées<br/>par des chevrons.</p>
+<p begin="00:00:53.71" end="00:00:55.57" style="1">Toutes les balises doivent être fermées.<br/></p>
+<p begin="00:00:55.57" end="00:00:58.74" style="1">La balise de fermeture est<br/>identique à la balise d'ouverture,</p>
+<p begin="00:00:58.74" end="00:01:02.57" style="1">à ceci près que son nom<br/>est précédé d'une barre oblique.</p>
+<p begin="00:01:02.57" end="00:01:05.91" style="1">Si une balise ne contient<br/>pas d'autres balises ou</p>
+<p begin="00:01:05.91" end="00:01:09.50" style="1">de données, vous pouvez utiliser<br/>une balise autonome qui</p>
+<p begin="00:01:09.50" end="00:01:12.29" style="1">comprend la barre oblique<br/>avant le chevron fermant</p>
+<p begin="00:01:12.29" end="00:01:13.78" style="1">de la balise d'ouverture.<br/></p>
+<p begin="00:01:13.78" end="00:01:17.27" style="1">Les attributs qui définissent<br/>les propriétés de la balise</p>
+<p begin="00:01:17.27" end="00:01:20.63" style="1">sont compris dans la balise<br/>d'ouverture et sont du type</p>
+<p begin="00:01:20.63" end="00:01:24.58" style="1">nom d'attribut=valeur, où<br/>la valeur est toujours spécifiée</p>
+<p begin="00:01:24.58" end="00:01:25.98" style="1">entre guillemets.<br/></p>
+<p begin="00:01:25.98" end="00:01:29.92" style="1">Les noms de balise et d'attribut<br/>respectent la casse.</p>
+<p begin="00:01:29.92" end="00:01:34.51" style="1">La balise Label avec un L<br/>n'est pas la même que</p>
+<p begin="00:01:34.51" end="00:01:35.89" style="1">label avec un l.<br/></p>
+<p begin="00:01:35.89" end="00:01:38.80" style="1">De fait, ces deux balises<br/>ont deux utilisations</p>
+<p begin="00:01:38.80" end="00:01:41.03" style="1">totalement différentes.<br/></p>
+<p begin="00:01:41.03" end="00:01:44.02" style="1">Il peut arriver que les valeurs<br/>possibles d'un attribut</p>
+<p begin="00:01:44.02" end="00:01:47.53" style="1">soient spécifiées, et dans ce<br/>cas elles respectent également</p>
+<p begin="00:01:47.53" end="00:01:48.72" style="1">la casse.<br/></p>
+<p begin="00:01:48.72" end="00:01:52.05" style="1">Ensuite, les balises<br/>doivent être hiérarchisées.</p>
+<p begin="00:01:52.05" end="00:01:57.12" style="1">Par exemple, si j'ouvre une<br/>balise hbox dans une balise layout,</p>
+<p begin="00:01:57.12" end="00:02:01.37" style="1">comme dans cet exemple<br/>BEML, je dois également fermer</p>
+<p begin="00:02:01.37" end="00:02:03.41" style="1">hbox avant de fermer layout.<br/></p>
+<p begin="00:02:03.41" end="00:02:08.64" style="1">Les données doivent être<br/>inscrites au sein d'une balise.</p>
+<p begin="00:02:08.64" end="00:02:12.63" style="1">Les langages XML ont également<br/>une balise racine, et toutes</p>
+<p begin="00:02:12.63" end="00:02:16.42" style="1">les autres balises doivent être<br/>inscrites au sein de cette balise.</p>
+<p begin="00:02:16.42" end="00:02:20.07" style="1">Il existe des entités semblables<br/>à des balises qui ne font</p>
+<p begin="00:02:20.07" end="00:02:23.94" style="1">pas partie de ce langage<br/>XML mais qui peuvent être</p>
+<p begin="00:02:23.94" end="00:02:25.99" style="1">utilisées dans n'importe<br/>quel document XML.</p>
+<p begin="00:02:25.99" end="00:02:29.71" style="1">L'un d'entre eux est le wrapper<br/>CDATA, qui sert à encapsuler</p>
+<p begin="00:02:29.71" end="00:02:33.31" style="1"> des données dans votre document<br/>pour que le processeur</p>
+<p begin="00:02:33.31" end="00:02:36.31" style="1">XML n'interprète pas vos<br/>données comme du code.</p>
+<p begin="00:02:36.31" end="00:02:38.62" style="1">Vous n'avez pas besoin<br/>d'utiliser ce wrapper si rien</p>
+<p begin="00:02:38.62" end="00:02:41.71" style="1">dans vos données n'est<br/>assimilable à du code,</p>
+<p begin="00:02:41.71" end="00:02:45.42" style="1">mais vous pouvez<br/>l'inclure par précaution.</p>
+<p begin="00:02:45.42" end="00:02:49.09" style="1">Vient ensuite la<br/>déclaration XML, qui figure</p>
+<p begin="00:02:49.09" end="00:02:52.00" style="1">en début de document et<br/>spécifie au processeur</p>
+<p begin="00:02:52.00" end="00:02:55.21" style="1">(éditeur ou navigateur) quelle<br/>version de la</p>
+<p begin="00:02:55.21" end="00:02:58.28" style="1">spécification XML utilise<br/>le document.</p>
+<p begin="00:02:58.28" end="00:03:01.04" style="1">À sa suite, la déclaration<br/>DOCTYPE, qui spécifie la</p>
+<p begin="00:03:01.04" end="00:03:06.02" style="1">définition de type de<br/>document (DTD), et qui</p>
+<p begin="00:03:06.02" end="00:03:08.98" style="1">définit les règles pour<br/>le langage XML utilisé.</p>
+<p begin="00:03:08.98" end="00:03:12.19" style="1">Cela est utile si vous<br/>utilisez un éditeur XML,</p>
+<p begin="00:03:12.19" end="00:03:15.37" style="1">comme c'est mon cas ici,<br/>parce que l'éditeur peut lire</p>
+<p begin="00:03:15.37" end="00:03:18.31" style="1">les règles du langage et vous<br/>aider à compléter le code</p>
+<p begin="00:03:18.31" end="00:03:22.05" style="1">et à faire des vérifications<br/>de validité du code, en plus</p>
+<p begin="00:03:22.05" end="00:03:25.91" style="1">du surlignage de<br/>syntaxe standard.</p>
+<p begin="00:03:25.91" end="00:03:28.52" style="1">Ces outils vous feront gagner<br/>du temps et vous épargneront</p>
+<p begin="00:03:28.52" end="00:03:31.95" style="1">bien des frustrations,<br/>c'est pourquoi je vous conseille</p>
+<p begin="00:03:31.95" end="00:03:33.65" style="1">fortement d'acquérir<br/>un éditeur XML.</p>
+<p begin="00:03:33.65" end="00:03:37.18" style="1">J'utilise actuellement Xmplify,<br/>un éditeur à bas prix</p>
+<p begin="00:03:37.18" end="00:03:40.88" style="1">disponible sur xmplifyapp.com,<br/>mais vous pouvez en</p>
+<p begin="00:03:40.88" end="00:03:44.77" style="1">trouver d'autres en<br/>cherchant sur Internet.</p>
+<p begin="00:03:44.77" end="00:03:46.07" style="1">
+<br/>
+</p>
+</div>
+</body>
+</tt>

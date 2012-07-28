@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="es">
+<p begin="00:00:00.00" end="00:00:05.20" style="1"><br/></p>
+<p begin="00:00:05.20" end="00:00:07.99" style="1">Vamos a crear metadatos personalizados <br/> para los vídeos con campos personalizados. </p>
+<p begin="00:00:07.99" end="00:00:10.95" style="1">  <br/> s.</p>
+<p begin="00:00:10.95" end="00:00:13.83" style="1">Estos campos almacenan información adicional <br/> de los vídeos o para Player API: </p>
+<p begin="00:00:13.83" end="00:00:16.97" style="1"> por ejemplo, un vínculo a una imagen que debe <br/> visualizarse al reproducir un vídeo. </p>
+<p begin="00:00:16.97" end="00:00:19.92" style="1">  <br/>  </p>
+<p begin="00:00:19.92" end="00:00:23.10" style="1">  <br/> </p>
+<p begin="00:00:23.10" end="00:00:25.63" style="1">También se usan para buscar <br/> recomendaciones de vídeos adicionales. </p>
+<p begin="00:00:25.63" end="00:00:27.22" style="1"> <br/></p>
+<p begin="00:00:27.22" end="00:00:29.54" style="1">Para acceder a la página Custom Fields desde <br/> la página inicial, elija Account Settings </p>
+<p begin="00:00:29.54" end="00:00:34.65" style="1"> y luego Video Fields. <br/> </p>
+<p begin="00:00:34.65" end="00:00:36.94" style="1">Para usar esta página, necesita <br/>privilegios de Administrador</p>
+<p begin="00:00:36.94" end="00:00:38.98" style="1"><br/></p>
+<p begin="00:00:38.98" end="00:00:42.45" style="1">El sistema ofrece 10 campos personalizados, <br/> pero puede pedir más a Asistencia Técnica. </p>
+<p begin="00:00:42.45" end="00:00:45.15" style="1"> <br/> </p>
+<p begin="00:00:45.15" end="00:00:47.94" style="1">No puede eliminar campos personalizados <br/> sin la asistencia técnica de Brightcove; </p>
+<p begin="00:00:47.94" end="00:00:50.55" style="1"> antes de crear campos, piense bien<br/> qué campos necesitará. </p>
+<p begin="00:00:50.55" end="00:00:53.41" style="1">br/> </p>
+<p begin="00:00:53.41" end="00:00:56.86" style="1">La sección Standard Fields <br/> muestra los campos predeterminados, </p>
+<p begin="00:00:56.86" end="00:00:59.99" style="1"> con los datos que pueden cambiarse en los ajustes <br/> de vídeo del módulo multimedia.</p>
+<p begin="00:00:59.99" end="00:01:02.41" style="1"> <br/></p>
+<p begin="00:01:02.41" end="00:01:05.31" style="1">Véalos antes de crear un campo personalizado, <br/> ya que quizá le valga con un campo estándar.</p>
+<p begin="00:01:05.31" end="00:01:07.30" style="1"> <br/></p>
+<p begin="00:01:07.30" end="00:01:11.37" style="1">Para crear un campo personalizado, <br/> elija Add Custom Fields.</p>
+<p begin="00:01:11.37" end="00:01:13.82" style="1">Asigne un nombre de visualización y un <br/> nombre interno a cada nuevo campo.</p>
+<p begin="00:01:13.82" end="00:01:15.43" style="1"><br/></p>
+<p begin="00:01:15.43" end="00:01:17.99" style="1">El nombre de visualización será su etiqueta <br/> en el módulo multimedia. </p>
+<p begin="00:01:17.99" end="00:01:19.16" style="1"><br/></p>
+<p begin="00:01:19.16" end="00:01:22.73" style="1">Puede usar caracteres de dos bytes. <br/> </p>
+<p begin="00:01:22.73" end="00:01:25.23" style="1">El nombre interno es el nombre <br/> variable empleado al usar una de las API </p>
+<p begin="00:01:25.23" end="00:01:27.92" style="1"> de Brightcove para acceder al campo personalizado <br/> mediante un programa. </p>
+<p begin="00:01:27.92" end="00:01:30.00" style="1"><br/></p>
+<p begin="00:01:30.00" end="00:01:33.42" style="1">El nombre interno es una variable, <br/> y solo admite caracteres alfanuméricos</p>
+<p begin="00:01:33.42" end="00:01:37.85" style="1"> en minúsculas y sin espacios.<br/> </p>
+<p begin="00:01:37.85" end="00:01:40.97" style="1">Brightcove Studio usa el mismo valor <br/> como nombre interno y de visualización.</p>
+<p begin="00:01:40.97" end="00:01:43.18" style="1"> <br/> </p>
+<p begin="00:01:43.18" end="00:01:46.46" style="1">Luego, elija el tipo de campo:<br/> texto o lista. </p>
+<p begin="00:01:46.46" end="00:01:50.72" style="1"> Los campos de texto admiten cadenas <br/> alfanuméricas con hasta 1024 caracteres. </p>
+<p begin="00:01:50.72" end="00:01:54.33" style="1"> <br/> </p>
+<p begin="00:01:54.33" end="00:01:57.86" style="1">Los campos de lista contienen una lista <br/> con hasta 150 cadenas de valores.</p>
+<p begin="00:01:57.86" end="00:01:59.66" style="1"> <br/></p>
+<p begin="00:01:59.66" end="00:02:02.81" style="1">Si opta por una lista, el diálogo <br/> New Custom Field se amplía para </p>
+<p begin="00:02:02.81" end="00:02:06.20" style="1"> permitir la inserción de valores.<br/> </p>
+<p begin="00:02:06.20" end="00:02:09.47" style="1">Para añadir un valor a la lista, <br/> insértelo en el campo </p>
+<p begin="00:02:09.47" end="00:02:13.91" style="1"> Add List Values y haga clic <br/> en el botón List.</p>
+<p begin="00:02:13.91" end="00:02:16.47" style="1">Una vez creadas todas las entradas de la lista, <br/> elija Save Changes para aplicar los valores.</p>
+<p begin="00:02:16.47" end="00:02:19.38" style="1">  <br/></p>
+<p begin="00:02:19.38" end="00:02:21.93" style="1">Tras crear un campo personalizado, <br/> elija el botón Save. </p>
+<p begin="00:02:21.93" end="00:02:23.27" style="1"> <br/></p>
+<p begin="00:02:23.27" end="00:02:26.18" style="1">Para aplicar un campo personalizado a un vídeo, <br/> use el módulo multimedia,</p>
+<p begin="00:02:26.18" end="00:02:30.02" style="1"> la transferencia FTP por lotes <br/> o la Media API. </p>
+<p begin="00:02:30.02" end="00:02:32.05" style="1"> <br/></p>
+<p begin="00:02:32.05" end="00:02:35.02" style="1">Para ver más información del uso <br/> de metadatos personalizados con vídeos,</p>
+<p begin="00:02:35.02" end="00:02:36.27" style="1"> consulte support.brightcove.com.<br/> </p>
+<p begin="00:02:36.27" end="00:02:38.27" style="1"><br/></p>
+</div>
+</body>
+</tt>

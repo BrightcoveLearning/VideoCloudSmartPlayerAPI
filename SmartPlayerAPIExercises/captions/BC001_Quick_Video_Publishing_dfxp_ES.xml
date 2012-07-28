@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="es">
+<p begin="00:00:00.00" end="00:00:00.38" style="1"><br/></p>
+<p begin="00:00:00.38" end="00:00:03.33" style="1">Para publicar un vídeo, lo más rápido<br/>es usar nuestra herramienta "Quick Publish"</p>
+<p begin="00:00:03.33" end="00:00:05.69" style="1">desde el módulo multimedia.<br/></p>
+<p begin="00:00:05.69" end="00:00:08.26" style="1">Siga estos pasos para ver el vídeo<br/>en su sitio Web en unos instantes.</p>
+<p begin="00:00:08.26" end="00:00:09.96" style="1"><br/></p>
+<p begin="00:00:09.96" end="00:00:12.22" style="1">Abra el módulo<br/>multimedia.</p>
+<p begin="00:00:12.22" end="00:00:15.66" style="1">Abajo a la izquierda, elija Upload Videos.<br/>.</p>
+<p begin="00:00:15.66" end="00:00:21.93" style="1">Seleccione el vídeo que desee<br/>publicar y comience a transferirlo.</p>
+<p begin="00:00:21.93" end="00:00:24.52" style="1">Brightcove codifica automáticamente el vídeo<br/>en distintas variantes de representación,</p>
+<p begin="00:00:24.52" end="00:00:27.01" style="1">para que los visitantes de su sitio Web<br/>disfruten de una buena experiencia</p>
+<p begin="00:00:27.01" end="00:00:29.89" style="1">en conexiones lentas, mientras que las conexiones<br/>rápidas ofrecerán la máxima calidad.</p>
+<p begin="00:00:29.89" end="00:00:32.45" style="1"><br/></p>
+<p begin="00:00:32.45" end="00:00:33.38" style="1"><br/></p>
+<p begin="00:00:33.38" end="00:00:37.09" style="1">Par cambiar los ajustes, haga doble clic<br/>clic en el vídeo y elija Edit abajo.</p>
+<p begin="00:00:37.09" end="00:00:40.03" style="1"><br/></p>
+<p begin="00:00:40.03" end="00:00:40.86" style="1"><br/></p>
+<p begin="00:00:40.86" end="00:00:45.23" style="1">Al terminar, sitúese a la derecha,<br/>en Quick Video Publish.</p>
+<p begin="00:00:45.23" end="00:00:47.19" style="1"><br/></p>
+<p begin="00:00:47.19" end="00:00:51.41" style="1">Aquí verá los reproductores de su biblioteca.<br/></p>
+<p begin="00:00:51.41" end="00:00:55.91" style="1">Elija el reproductor que desee publicar,<br/> elija el código y Copy Code.</p>
+<p begin="00:00:55.91" end="00:00:58.95" style="1"><br/></p>
+<p begin="00:00:58.95" end="00:01:01.32" style="1">Ya puede insertarlo en la página HTML<br/>de su sitio Web.</p>
+<p begin="00:01:01.32" end="00:01:04.14" style="1"><br/></p>
+<p begin="00:01:04.14" end="00:01:11.41" style="1">Pegue el código, guarde los cambios,<br/></p>
+<p begin="00:01:11.41" end="00:01:14.32" style="1">vaya a su sitio web, actualice los cambios,<br/></p>
+<p begin="00:01:14.32" end="00:01:16.86" style="1">y ya podrá ver el vídeo publicado.<br/></p>
+<p begin="00:01:16.86" end="00:01:18.89" style="1">Sólo hay que insertar el código una vez.<br/></p>
+<p begin="00:01:18.89" end="00:01:20.08" style="1"><br/></p>
+<p begin="00:01:20.08" end="00:01:22.39" style="1">Los cambios del reproductor desde<br/>el módulo multimedia se reflejan</p>
+<p begin="00:01:22.39" end="00:01:25.42" style="1">automáticamente en su sitio web.<br/></p>
+<p begin="00:01:25.42" end="00:01:25.47" style="1"><br/></p>
+</div>
+</body>
+</tt>

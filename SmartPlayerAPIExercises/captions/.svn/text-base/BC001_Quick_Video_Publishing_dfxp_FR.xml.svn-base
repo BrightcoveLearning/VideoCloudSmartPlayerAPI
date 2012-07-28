@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="fr">
+<p begin="00:00:00.00" end="00:00:00.38" style="1"><br/></p>
+<p begin="00:00:00.38" end="00:00:03.33" style="1">La façon la plus rapide de<br/>publier une vidéo est d'utiliser</p>
+<p begin="00:00:03.33" end="00:00:05.69" style="1">l'outil de publication rapide<br/>du module Médias.</p>
+<p begin="00:00:05.69" end="00:00:08.26" style="1">Suivez ces étapes<br/>pour publier votre vidéo</p>
+<p begin="00:00:08.26" end="00:00:09.96" style="1">en un clin d’œil.<br/></p>
+<p begin="00:00:09.96" end="00:00:12.22" style="1">Passez au<br/>module Médias.</p>
+<p begin="00:00:12.22" end="00:00:15.66" style="1">Cliquez sur Charger vidéos<br/>en bas à gauche.</p>
+<p begin="00:00:15.66" end="00:00:21.93" style="1">Sélectionnez la vidéo à publier<br/>et démarrez le chargement.</p>
+<p begin="00:00:21.93" end="00:00:24.52" style="1">Brightcove codera automatiquement<br/>votre vidéo en plusieurs</p>
+<p begin="00:00:24.52" end="00:00:27.01" style="1">rendus pour que les<br/>visiteurs avec une connexion</p>
+<p begin="00:00:27.01" end="00:00:29.89" style="1">peu performante puissent avoir<br/>une lecture fluide et</p>
+<p begin="00:00:29.89" end="00:00:32.45" style="1">que ceux avec une bonne<br/>connexion aient une </p>
+<p begin="00:00:32.45" end="00:00:33.38" style="1">qualité optimale.<br/></p>
+<p begin="00:00:33.38" end="00:00:37.09" style="1">Vous pouvez éditer les<br/>paramètres vidéo en</p>
+<p begin="00:00:37.09" end="00:00:40.03" style="1">double-cliquant sur la vidéo<br/>ou en cliquant sur</p>
+<p begin="00:00:40.03" end="00:00:40.86" style="1">Modifier dans le<br/>volet du bas.</p>
+<p begin="00:00:40.86" end="00:00:45.23" style="1">Une fois terminé, allez sur<br/>la droite, dans Publication</p>
+<p begin="00:00:45.23" end="00:00:47.19" style="1">rapide de vidéos.<br/></p>
+<p begin="00:00:47.19" end="00:00:51.41" style="1">Vous y verrez les lecteurs<br/>de vidéo unique de votre bibliothèque.</p>
+<p begin="00:00:51.41" end="00:00:55.91" style="1">Sélectionnez le lecteur<br/>à publier, choisissez</p>
+<p begin="00:00:55.91" end="00:00:58.95" style="1">son code et copiez-le.<br/></p>
+<p begin="00:00:58.95" end="00:01:01.32" style="1">Une fois ceci fait, vous pouvez<br/>le coller dans la page HTML</p>
+<p begin="00:01:01.32" end="00:01:04.14" style="1">de votre site Web.<br/></p>
+<p begin="00:01:04.14" end="00:01:11.41" style="1">Collez le code, enregistrez<br/>les modifications, allez sur</p>
+<p begin="00:01:11.41" end="00:01:14.32" style="1">votre site, réactualisez les<br/>modifications et votre vidéo</p>
+<p begin="00:01:14.32" end="00:01:16.86" style="1">est prête à être lue.<br/></p>
+<p begin="00:01:16.86" end="00:01:18.89" style="1">Rappelez-vous que cette<br/>intégration ne se fait</p>
+<p begin="00:01:18.89" end="00:01:20.08" style="1">qu'une seule fois.<br/></p>
+<p begin="00:01:20.08" end="00:01:22.39" style="1">Les modifications apportées au<br/>lecteur dans le module Médias</p>
+<p begin="00:01:22.39" end="00:01:25.42" style="1">seront automatiquement<br/>répercutées sur votre site.</p>
+<p begin="00:01:25.42" end="00:01:25.47" style="1">
+<br/>
+</p>
+</div>
+</body>
+</tt>

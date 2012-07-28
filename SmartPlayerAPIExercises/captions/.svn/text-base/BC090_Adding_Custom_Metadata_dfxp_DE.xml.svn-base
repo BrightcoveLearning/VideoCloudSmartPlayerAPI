@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="de">
+<p begin="00:00:00.00" end="00:00:05.20" style="1"><br/></p>
+<p begin="00:00:05.20" end="00:00:07.99" style="1">In diesem Video erfahren Sie, wie<br/>Sie über benutzerdefinierte Felder benutzerdefinierte Metadaten</p>
+<p begin="00:00:07.99" end="00:00:10.95" style="1">für Ihre Videos erstellen.<br/></p>
+<p begin="00:00:10.95" end="00:00:13.83" style="1">Mithilfe von benutzerdefinierten Feldern<br/>speichern Sie Zusatzinformationen</p>
+<p begin="00:00:13.83" end="00:00:16.97" style="1">über die Videos oder<br/>Informationen, die Sie über die</p>
+<p begin="00:00:16.97" end="00:00:19.92" style="1">Player-API verwenden möchten,<br/>z. B. als Link zu einem Bild, der</p>
+<p begin="00:00:19.92" end="00:00:23.10" style="1">während der Videowiedergabe<br/>gezeigt wird.</p>
+<p begin="00:00:23.10" end="00:00:25.63" style="1">Benutzerdefinierte Felder werden zudem<br/>für zusätzliche Videoempfehlungen</p>
+<p begin="00:00:25.63" end="00:00:27.22" style="1">verwendet.<br/></p>
+<p begin="00:00:27.22" end="00:00:29.54" style="1">Klicken Sie auf der Startseite auf<br/>den Link „Kontoeinstellungen“</p>
+<p begin="00:00:29.54" end="00:00:34.65" style="1">und dann auf „Videofelder“, um<br/>zur Seite „Videofelder“ zu gelangen.</p>
+<p begin="00:00:34.65" end="00:00:36.94" style="1">Beachten Sie, dass Sie für den Zugang zu dieser Seite<br/>Administratorberechtigungen benötigen.</p>
+<p begin="00:00:36.94" end="00:00:38.98" style="1"><br/></p>
+<p begin="00:00:38.98" end="00:00:42.45" style="1">Sie verfügen standardmäßig über<br/>10 benutzerdefinierte Felder, Sie erhalten jedoch auf Anfrage beim Brightcove-Support</p>
+<p begin="00:00:42.45" end="00:00:45.15" style="1">weitere Felder.<br/></p>
+<p begin="00:00:45.15" end="00:00:47.94" style="1">Beachten Sie, dass benutzerdefinierte Felder nicht<br/>ohne die Hilfe des</p>
+<p begin="00:00:47.94" end="00:00:50.55" style="1">Brightcove-Supports gelöscht werden können. Überlegen Sie<br/>daher vor dem Erstellen genau, welche</p>
+<p begin="00:00:50.55" end="00:00:53.41" style="1">Felder Sie benötigen.<br/></p>
+<p begin="00:00:53.41" end="00:00:56.86" style="1">Im Bereich der Standardfelder<br/>werden die Standardfelder aufgelistet,</p>
+<p begin="00:00:56.86" end="00:00:59.99" style="1">deren Daten<br/>im Medienmodul in den</p>
+<p begin="00:00:59.99" end="00:01:02.41" style="1">Videoeinstellungen anpassbar sind.<br/></p>
+<p begin="00:01:02.41" end="00:01:05.31" style="1">Überprüfen Sie vor<br/>dem Erstellen benutzerdefinierter Felder die Standardfelder,</p>
+<p begin="00:01:05.31" end="00:01:07.30" style="1">um ggf. ein solches zu verwenden.<br/></p>
+<p begin="00:01:07.30" end="00:01:11.37" style="1">Klicken Sie zum Erstellen eines <br/>benutzerdefinierten Felds auf die Schaltfläche „Benutzerdefinierte Felder hinzufügen“.</p>
+<p begin="00:01:11.37" end="00:01:13.82" style="1">Geben Sie für jedes neue Feld einen<br/>Anzeigenamen und einen internen Namen ein.</p>
+<p begin="00:01:13.82" end="00:01:15.43" style="1"><br/></p>
+<p begin="00:01:15.43" end="00:01:17.99" style="1">Der Anzeigename wird im <br/>Medienmodul als Label für</p>
+<p begin="00:01:17.99" end="00:01:19.16" style="1">das Feld angezeigt.<br/></p>
+<p begin="00:01:19.16" end="00:01:22.73" style="1">Dieses Label unterstützt<br/>Doppelbytezeichen.</p>
+<p begin="00:01:22.73" end="00:01:25.23" style="1">Der interne Name ist<br/>variabel, wenn eine der</p>
+<p begin="00:01:25.23" end="00:01:27.92" style="1">Brightcove-APIs zum<br/>programmgesteuerten Zugriff</p>
+<p begin="00:01:27.92" end="00:01:30.00" style="1">auf dieses benutzerdefinierte Feld verwendet wird.<br/></p>
+<p begin="00:01:30.00" end="00:01:33.42" style="1">Da es sich beim internen Namen um eine Variable handelt,<br/>sind nur alphanumerische,</p>
+<p begin="00:01:33.42" end="00:01:37.85" style="1">kleingeschriebene Zeichen ohne Leerstellen<br/>zulässig.</p>
+<p begin="00:01:37.85" end="00:01:40.97" style="1">Brightcove Studio<br/>weist dem internen Namen standardmäßig</p>
+<p begin="00:01:40.97" end="00:01:43.18" style="1">den entsprechenden Wert des<br/>Anzeigenamens zu.</p>
+<p begin="00:01:43.18" end="00:01:46.46" style="1">Geben Sie anschließend den<br/>Typ an, entweder Text oder eine Liste.</p>
+<p begin="00:01:46.46" end="00:01:50.72" style="1"> Ein Texttypfeld<br/>ermöglicht das Speichern eines alphanumerischen Strings</p>
+<p begin="00:01:50.72" end="00:01:54.33" style="1">von bis zu 1024 Zeichen.<br/></p>
+<p begin="00:01:54.33" end="00:01:57.86" style="1">Ein Feldtyp „Liste“ gibt eine<br/>Auswahlliste von bis zu 150 Stringwerten</p>
+<p begin="00:01:57.86" end="00:01:59.66" style="1">vor.<br/></p>
+<p begin="00:01:59.66" end="00:02:02.81" style="1">Bei der Auswahl eines Feldtyps „Liste“<br/>öffnet sich ein neues Dialogfeld zum benutzerdefinierten Feld,</p>
+<p begin="00:02:02.81" end="00:02:06.20" style="1"><br/>in das Sie Werte eingeben können.</p>
+<p begin="00:02:06.20" end="00:02:09.47" style="1">Zum Hinzufügen eines Werts zur Liste<br/>geben Sie ihn in das Feld zum Hinzufügen von Listenwerten ein,</p>
+<p begin="00:02:09.47" end="00:02:13.91" style="1">und klicken Sie auf die entsprechende Schaltfläche.<br/></p>
+<p begin="00:02:13.91" end="00:02:16.47" style="1">Klicken Sie zum Anwenden dieser Werte nach beendeter Eingabe der Listenwerte<br/>auf die Schaltfläche</p>
+<p begin="00:02:16.47" end="00:02:19.38" style="1">„Änderungen speichern“.<br/></p>
+<p begin="00:02:19.38" end="00:02:21.93" style="1">Klicken Sie nach vollständigem Erstellen des<br/>benutzerdefinierten Felds auf die Schaltfläche</p>
+<p begin="00:02:21.93" end="00:02:23.27" style="1">„Speichern“.<br/></p>
+<p begin="00:02:23.27" end="00:02:26.18" style="1">Verwenden Sie zum Anwenden eines benutzerdefinierten Felds auf<br/>ein Video</p>
+<p begin="00:02:26.18" end="00:02:30.02" style="1">das Medienmodul,<br/>die FTP-Batch-Bereitstellung oder</p>
+<p begin="00:02:30.02" end="00:02:32.05" style="1">die Medien-API.<br/></p>
+<p begin="00:02:32.05" end="00:02:35.02" style="1">Weitere Informationen über die kombinierte Verwendung<br/>von benutzerdefinierten Metadaten und</p>
+<p begin="00:02:35.02" end="00:02:36.27" style="1">Ihren Videos finden Sie unter<br/>support.brightcove.com.</p>
+<p begin="00:02:36.27" end="00:02:38.27" style="1"><br/></p>
+</div>
+</body>
+</tt>

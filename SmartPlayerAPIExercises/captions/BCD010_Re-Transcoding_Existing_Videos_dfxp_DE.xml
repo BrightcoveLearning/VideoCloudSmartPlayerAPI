@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="de">
+<p begin="00:00:00.00" end="00:00:01.32" style="1"><br/></p>
+<p begin="00:00:01.32" end="00:00:03.80" style="1">Sie haben vielleicht<br/>bereits Videos in Ihrem Konto,</p>
+<p begin="00:00:03.80" end="00:00:06.73" style="1">die Sie neu codieren möchten,<br/>weil Sie sie zunächst</p>
+<p begin="00:00:06.73" end="00:00:09.77" style="1">in das FLV-<br/>Format transcodiert haben, jetzt aber im</p>
+<p begin="00:00:09.77" end="00:00:13.73" style="1">H.264-Format benötigen, oder weil Sie</p>
+<p begin="00:00:13.73" end="00:00:15.64" style="1">Ihren Einstellungen für die Transcodierung neue Wiedergabeversionen hinzugefügt haben.<br/></p>
+<p begin="00:00:15.64" end="00:00:18.27" style="1">Wenn Sie über ein Pro- oder Enterprise-Konto<br/>verfügen, verwenden Sie</p>
+<p begin="00:00:18.27" end="00:00:20.38" style="1">einfach den<br/>Batch-Bereitstellungsprozess</p>
+<p begin="00:00:20.38" end="00:00:22.36" style="1">von Brightcove.<br/></p>
+<p begin="00:00:22.36" end="00:00:24.78" style="1">Sie müssen dazu<br/>drei Schritte ausführen.</p>
+<p begin="00:00:24.78" end="00:00:27.96" style="1">Fordern Sie beim Brightcove-Support<br/>zunächst ein</p>
+<p begin="00:00:27.96" end="00:00:31.58" style="1">Brightcove-FTP-Konto an<br/>(falls noch nicht vorhanden).</p>
+<p begin="00:00:31.58" end="00:00:35.10" style="1">Erstellen Sie dann<br/>Referenz-ID-Werte für die</p>
+<p begin="00:00:35.10" end="00:00:38.69" style="1">zu transcodierenden Videos,<br/>falls ihnen noch keine</p>
+<p begin="00:00:38.69" end="00:00:40.00" style="1">Referenz-IDs zugewiesen sind.<br/></p>
+<p begin="00:00:40.00" end="00:00:43.26" style="1">Dies ist manuell über die Videoeinstellungen<br/>möglich oder</p>
+<p begin="00:00:43.26" end="00:00:48.19" style="1">über das Tool zur Erstellung von Referenz-Ids,<br/>das Sie unter dieser Adresse finden.</p>
+<p begin="00:00:48.19" end="00:00:51.40" style="1">Erstellen sie abschließend<br/>eine Manifestdatei mit den</p>
+<p begin="00:00:51.40" end="00:00:54.46" style="1">Anweisungen zur erneuten Transcodierung,<br/>und laden Sie sie</p>
+<p begin="00:00:54.46" end="00:00:57.38" style="1">über die vom Brightcove-Support bereitgestellte FTP-Adresse mit den entsprechenden Anmeldeinformationen hoch.<br/></p>
+<p begin="00:00:57.38" end="00:00:59.28" style="1"><br/></p>
+<p begin="00:00:59.28" end="00:01:02.73" style="1">Das Manifest ist ein einfaches XML-<br/>Dokument. Eine Vorlage können Sie</p>
+<p begin="00:01:02.73" end="00:01:05.53" style="1">durch Klicken auf den<br/>zugehörigen Link für dieses</p>
+<p begin="00:01:05.53" end="00:01:08.88" style="1">Video oder durch Navigieren<br/>zu dieser Adresse herunterladen.</p>
+<p begin="00:01:08.88" end="00:01:12.37" style="1">Sobald Sie die Vorlage haben,<br/>öffnen Sie einen XML-Editor wie</p>
+<p begin="00:01:12.37" end="00:01:16.33" style="1">Xmplify oder einen herkömmlichen Texteditor,<br/>und führen Sie die folgenden</p>
+<p begin="00:01:16.33" end="00:01:18.09" style="1">Änderungen durch.<br/></p>
+<p begin="00:01:18.09" end="00:01:21.23" style="1">Ändern Sie im publisher upload manifest-Tag<br/></p>
+<p begin="00:01:21.23" end="00:01:24.23" style="1">den Wert für die Publisher-ID zur <br/>Publisher-ID Ihres eigenen</p>
+<p begin="00:01:24.23" end="00:01:28.43" style="1">Kontos, die Sie in<br/>Ihrem Kontoprofil finden.</p>
+<p begin="00:01:28.43" end="00:01:31.24" style="1">Ändern Sie außerdem den preparer-Wert,<br/>um festzuhalten,</p>
+<p begin="00:01:31.24" end="00:01:34.15" style="1">wer diese Änderung<br/>vorgenommen hat.</p>
+<p begin="00:01:34.15" end="00:01:37.41" style="1">Ändern Sie im notify-Tag<br/>den email-Wert zur Adresse,</p>
+<p begin="00:01:37.41" end="00:01:40.92" style="1">die die Benachrichtigung über<br/>das Ergebnis erhalten soll.</p>
+<p begin="00:01:40.92" end="00:01:43.05" style="1">Ändern Sie im<br/>reencode-from-existing-source-Tag</p>
+<p begin="00:01:43.05" end="00:01:48.24" style="1">den title-refid-Wert<br/>in die Referenz-ID</p>
+<p begin="00:01:48.24" end="00:01:51.30" style="1">des erneut zu<br/>codierenden Videos.</p>
+<p begin="00:01:51.30" end="00:01:54.17" style="1">Um die vorhandene<br/>Miniaturansicht und das</p>
+<p begin="00:01:54.17" end="00:01:57.77" style="1">Videostandbild, beizubehalten, ändern Sie<br/>den overwrite images-Wert zu</p>
+<p begin="00:01:57.77" end="00:01:59.53" style="1">"false".<br/></p>
+<p begin="00:01:59.53" end="00:02:03.10" style="1">Möchten Sie mehrere Videos<br/>neu codieren, kopieren Sie einfach</p>
+<p begin="00:02:03.10" end="00:02:05.57" style="1">das gesamte<br/>reencode-from-existing-source-</p>
+<p begin="00:02:05.57" end="00:02:10.10" style="1">Tag, und fügen Sie es unter<br/>dem bestehenden Tag ein.</p>
+<p begin="00:02:10.10" end="00:02:12.35" style="1">Stellen Sie sicher, dass Sie es vor dem<br/>schließenden</p>
+<p begin="00:02:12.35" end="00:02:16.84" style="1">publisher-upload-manifest-Tag einfügen.<br/></p>
+<p begin="00:02:16.84" end="00:02:20.96" style="1">Ändern Sie dann die title-refid-<br/>Werte, um</p>
+<p begin="00:02:20.96" end="00:02:23.10" style="1">weitere Videos anzugeben.<br/></p>
+<p begin="00:02:23.10" end="00:02:26.86" style="1">Prüfen Sie vor Senden des Manifests,<br/>ob alle Attributwerte den XML-Vorgaben gemäß</p>
+<p begin="00:02:26.86" end="00:02:29.81" style="1">in Anführungszeichen stehen.<br/></p>
+<p begin="00:02:29.81" end="00:02:31.92" style="1"><br/></p>
+<p begin="00:02:31.92" end="00:02:35.82" style="1">Nach Senden des Manifests<br/>über FTP wird nach Beenden des Prozesses eine Nachricht</p>
+<p begin="00:02:35.82" end="00:02:39.08" style="1">an die von Ihnen im notify-Tag angegebene<br/>E-Mail-Adresse geschickt.</p>
+<p begin="00:02:39.08" end="00:02:41.20" style="1"><br/></p>
+<p begin="00:02:41.20" end="00:02:41.72" style="1"><br/></p>
+</div>
+</body>
+</tt>

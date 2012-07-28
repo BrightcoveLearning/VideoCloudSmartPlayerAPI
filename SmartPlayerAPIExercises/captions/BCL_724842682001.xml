@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="">
+<head>
+<styling>
+<style tts:fontSize="14" tts:textAlign="center" tts:wrapOption="wrap" id="1"/>
+</styling>
+</head>
+<body>
+<div xml:lang="de">
+<p begin="00:00:00.00" end="00:00:01.32" style="1"><br/></p>
+<p begin="00:00:01.32" end="00:00:03.80" style="1">Sie haben vielleicht<br/>bereits Videos in Ihrem Konto,</p>
+<p begin="00:00:03.80" end="00:00:06.73" style="1">die Sie neu codieren möchten,<br/>weil Sie sie zunächst</p>
+<p begin="00:00:06.73" end="00:00:09.77" style="1">in das FLV-<br/>Format transcodiert haben, jetzt aber im</p>
+<p begin="00:00:09.77" end="00:00:13.73" style="1">H.264-Format benötigen, oder weil Sie</p>
+<p begin="00:00:13.73" end="00:00:15.64" style="1">Ihren Einstellungen für die Transcodierung neue Wiedergabeversionen hinzugefügt haben.<br/></p>
+<p begin="00:00:15.64" end="00:00:18.27" style="1">Wenn Sie über ein Pro- oder Enterprise-Konto<br/>verfügen, verwenden Sie</p>
+<p begin="00:00:18.27" end="00:00:20.38" style="1">einfach den<br/>Batch-Bereitstellungsprozess</p>
+<p begin="00:00:20.38" end="00:00:22.36" style="1">von Brightcove.<br/></p>
+<p begin="00:00:22.36" end="00:00:24.78" style="1">Sie müssen dazu<br/>drei Schritte ausführen.</p>
+<p begin="00:00:24.78" end="00:00:27.96" style="1">Fordern Sie beim Brightcove-Support<br/>zunächst ein</p>
+<p begin="00:00:27.96" end="00:00:31.58" style="1">Brightcove-FTP-Konto an<br/>(falls noch nicht vorhanden).</p>
+<p begin="00:00:31.58" end="00:00:35.10" style="1">Erstellen Sie dann<br/>Referenz-ID-Werte für die</p>
+<p begin="00:00:35.10" end="00:00:38.69" style="1">zu transcodierenden Videos,<br/>falls ihnen noch keine</p>
+<p begin="00:00:38.69" end="00:00:40.00" style="1">Referenz-IDs zugewiesen sind.<br/></p>
+<p begin="00:00:40.00" end="00:00:43.26" style="1">Dies ist manuell über die Videoeinstellungen<br/>möglich oder</p>
+<p begin="00:00:43.26" end="00:00:48.19" style="1">über das Tool zur Erstellung von Referenz-Ids,<br/>das Sie unter dieser Adresse finden.</p>
+<p begin="00:00:48.19" end="00:00:51.40" style="1">Erstellen sie abschließend<br/>eine Manifestdatei mit den</p>
+<p begin="00:00:51.40" end="00:00:54.46" style="1">Anweisungen zur erneuten Transcodierung,<br/>und laden Sie sie</p>
+<p begin="00:00:54.46" end="00:00:57.38" style="1">über die vom Brightcove-Support bereitgestellte FTP-Adresse mit den entsprechenden Anmeldeinformationen hoch.<br/></p>
+<p begin="00:00:57.38" end="00:00:59.28" style="1"><br/></p>
+<p begin="00:00:59.28" end="00:01:02.73" style="1">Das Manifest ist ein einfaches XML-<br/>Dokument. Eine Vorlage können Sie</p>
+<p begin="00:01:02.73" end="00:01:05.53" style="1">durch Klicken auf den<br/>zugehörigen Link für dieses</p>
+<p begin="00:01:05.53" end="00:01:08.88" style="1">Video oder durch Navigieren<br/>zu dieser Adresse herunterladen.</p>
+<p begin="00:01:08.88" end="00:01:12.37" style="1">Sobald Sie die Vorlage haben,<br/>öffnen Sie einen XML-Editor wie</p>
+<p begin="00:01:12.37" end="00:01:16.33" style="1">Xmplify oder einen herkömmlichen Texteditor,<br/>und führen Sie die folgenden</p>
+<p begin="00:01:16.33" end="00:01:18.09" style="1">Änderungen durch.<br/></p>
+<p begin="00:01:18.09" end="00:01:21.23" style="1">Ändern Sie im publisher upload manifest-Tag<br/></p>
+<p begin="00:01:21.23" end="00:01:24.23" style="1">den Wert für die Publisher-ID zur <br/>Publisher-ID Ihres eigenen</p>
+<p begin="00:01:24.23" end="00:01:28.43" style="1">Kontos, die Sie in<br/>Ihrem Kontoprofil finden.</p>
+<p begin="00:01:28.43" end="00:01:31.24" style="1">Ändern Sie außerdem den preparer-Wert,<br/>um festzuhalten,</p>
+<p begin="00:01:31.24" end="00:01:34.15" style="1">wer diese Änderung<br/>vorgenommen hat.</p>
+<p begin="00:01:34.15" end="00:01:37.41" style="1">Ändern Sie im notify-Tag<br/>den email-Wert zur Adresse,</p>
+<p begin="00:01:37.41" end="00:01:40.92" style="1">die die Benachrichtigung über<br/>das Ergebnis erhalten soll.</p>
+<p begin="00:01:40.92" end="00:01:43.05" style="1">Ändern Sie im<br/>reencode-from-existing-source-Tag</p>
+<p begin="00:01:43.05" end="00:01:48.24" style="1">den title-refid-Wert<br/>in die Referenz-ID</p>
+<p begin="00:01:48.24" end="00:01:51.30" style="1">des erneut zu<br/>codierenden Videos.</p>
+<p begin="00:01:51.30" end="00:01:54.17" style="1">Um die vorhandene<br/>Miniaturansicht und das</p>
+<p begin="00:01:54.17" end="00:01:57.77" style="1">Videostandbild, beizubehalten, ändern Sie<br/>den overwrite images-Wert zu</p>
+<p begin="00:01:57.77" end="00:01:59.53" style="1">"false".<br/></p>
+<p begin="00:01:59.53" end="00:02:03.10" style="1">Möchten Sie mehrere Videos<br/>neu codieren, kopieren Sie einfach</p>
+<p begin="00:02:03.10" end="00:02:05.57" style="1">das gesamte<br/>reencode-from-existing-source-</p>
+<p begin="00:02:05.57" end="00:02:10.10" style="1">Tag, und fügen Sie es unter<br/>dem bestehenden Tag ein.</p>
+<p begin="00:02:10.10" end="00:02:12.35" style="1">Stellen Sie sicher, dass Sie es vor dem<br/>schließenden</p>
+<p begin="00:02:12.35" end="00:02:16.84" style="1">publisher-upload-manifest-Tag einfügen.<br/></p>
+<p begin="00:02:16.84" end="00:02:20.96" style="1">Ändern Sie dann die title-refid-<br/>Werte, um</p>
+<p begin="00:02:20.96" end="00:02:23.10" style="1">weitere Videos anzugeben.<br/></p>
+<p begin="00:02:23.10" end="00:02:26.86" style="1">Prüfen Sie vor Senden des Manifests,<br/>ob alle Attributwerte den XML-Vorgaben gemäß</p>
+<p begin="00:02:26.86" end="00:02:29.81" style="1">in Anführungszeichen stehen.<br/></p>
+<p begin="00:02:29.81" end="00:02:31.92" style="1"><br/></p>
+<p begin="00:02:31.92" end="00:02:35.82" style="1">Nach Senden des Manifests<br/>über FTP wird nach Beenden des Prozesses eine Nachricht</p>
+<p begin="00:02:35.82" end="00:02:39.08" style="1">an die von Ihnen im notify-Tag angegebene<br/>E-Mail-Adresse geschickt.</p>
+<p begin="00:02:39.08" end="00:02:41.20" style="1"><br/></p>
+<p begin="00:02:41.20" end="00:02:41.72" style="1"><br/></p>
+</div>
+<div xml:lang="es">
+<p begin="00:00:00.00" end="00:00:01.32" style="1"><br/></p>
+<p begin="00:00:01.32" end="00:00:03.80" style="1">Quizás desea recodificar vídeos de su cuenta,<br/>porque tienen formato FLV y ahora</p>
+<p begin="00:00:03.80" end="00:00:06.73" style="1">los necesita en H.264, o porque necesite otras<br/>variantes de representación.</p>
+<p begin="00:00:06.73" end="00:00:09.77" style="1"><br/></p>
+<p begin="00:00:09.77" end="00:00:13.73" style="1"><br/></p>
+<p begin="00:00:13.73" end="00:00:15.64" style="1"><br/></p>
+<p begin="00:00:15.64" end="00:00:18.27" style="1">Si su cuenta es profesional o empresarial,<br/> use el proceso por lotes de Brightcove.</p>
+<p begin="00:00:18.27" end="00:00:20.38" style="1"><br/></p>
+<p begin="00:00:20.38" end="00:00:22.36" style="1"><br/></p>
+<p begin="00:00:22.36" end="00:00:24.78" style="1">Tendrá que hacer tres cosas.<br/></p>
+<p begin="00:00:24.78" end="00:00:27.96" style="1">Primero, solicite a soporte técnico<br/>una cuenta FTP en Brightcove.</p>
+<p begin="00:00:27.96" end="00:00:31.58" style="1"><br/></p>
+<p begin="00:00:31.58" end="00:00:35.10" style="1">Luego, cree ID de referencia de los vídeos<br/>que desee transcodificar, si es que no</p>
+<p begin="00:00:35.10" end="00:00:38.69" style="1">tienen ya identificadores.<br/></p>
+<p begin="00:00:38.69" end="00:00:40.00" style="1"><br/></p>
+<p begin="00:00:40.00" end="00:00:43.26" style="1">Puede hacerlo manualmente en los ajustes<br/>de vídeo, o usar la herramienta de ID</p>
+<p begin="00:00:43.26" end="00:00:48.19" style="1">de referencia en esta dirección.<br/></p>
+<p begin="00:00:48.19" end="00:00:51.40" style="1">Para terminar, cree un archivo de manifiesto<br/>con instrucciones para transcodificarlo</p>
+<p begin="00:00:51.40" end="00:00:54.46" style="1">y transferirlo a FTP con las credenciales<br/>que le dio el soporte técnico de Brightcove.</p>
+<p begin="00:00:54.46" end="00:00:57.38" style="1"><br/></p>
+<p begin="00:00:57.38" end="00:00:59.28" style="1"><br/></p>
+<p begin="00:00:59.28" end="00:01:02.73" style="1">El manifiesto es un documento XML simple.<br/>Si desea descargar una plantilla,</p>
+<p begin="00:01:02.73" end="00:01:05.53" style="1">haga clic en el enlace de este vídeo o vaya<br/>a esta dirección.</p>
+<p begin="00:01:05.53" end="00:01:08.88" style="1"><br/></p>
+<p begin="00:01:08.88" end="00:01:12.37" style="1">Cuando tenga la plantilla, abra un editor<br/>XML, Xemplify o un editor de texto,</p>
+<p begin="00:01:12.37" end="00:01:16.33" style="1">y haga los siguientes cambios.<br/></p>
+<p begin="00:01:16.33" end="00:01:18.09" style="1"><br/></p>
+<p begin="00:01:18.09" end="00:01:21.23" style="1">En la etiqueta Publisher Upload Manifest,<br/>cambie el valor de Publisher ID</p>
+<p begin="00:01:21.23" end="00:01:24.23" style="1">al de su propia cuenta<br/>(consúltelo en el perfil de su cuenta).</p>
+<p begin="00:01:24.23" end="00:01:28.43" style="1"><br/></p>
+<p begin="00:01:28.43" end="00:01:31.24" style="1">También puede cambiar el valor de Preparer<br/>para registrar el autor del cambio.</p>
+<p begin="00:01:31.24" end="00:01:34.15" style="1"><br/></p>
+<p begin="00:01:34.15" end="00:01:37.41" style="1">En notify, cambie el valor de email a la dirección<br/>donde recibir el resultado.</p>
+<p begin="00:01:37.41" end="00:01:40.92" style="1"><br/></p>
+<p begin="00:01:40.92" end="00:01:43.05" style="1">En la etiqueta reencode-from-existing-source,<br/>asigne a title-refid el ID del vídeo</p>
+<p begin="00:01:43.05" end="00:01:48.24" style="1">que desee volver a codificar.<br/></p>
+<p begin="00:01:48.24" end="00:01:51.30" style="1"><br/></p>
+<p begin="00:01:51.30" end="00:01:54.17" style="1">Si desea mantener los fotogramas de<br/>miniatura y vídeo, cambie el valor</p>
+<p begin="00:01:54.17" end="00:01:57.77" style="1">de overwrite images a false.<br/></p>
+<p begin="00:01:57.77" end="00:01:59.53" style="1"><br/></p>
+<p begin="00:01:59.53" end="00:02:03.10" style="1">Para recodificar varios vídeos a la vez,<br/> copie la etiqueta reencode-from-existing-source</p>
+<p begin="00:02:03.10" end="00:02:05.57" style="1"><br/></p>
+<p begin="00:02:05.57" end="00:02:10.10" style="1">y péguela debajo, y antes, de la etiqueta<br/>publisher-upload-manifest.</p>
+<p begin="00:02:10.10" end="00:02:12.35" style="1"><br/></p>
+<p begin="00:02:12.35" end="00:02:16.84" style="1"><br/></p>
+<p begin="00:02:16.84" end="00:02:20.96" style="1">Luego, cambie los valores de title-refid<br/>de los demás vídeos.</p>
+<p begin="00:02:20.96" end="00:02:23.10" style="1"><br/></p>
+<p begin="00:02:23.10" end="00:02:26.86" style="1">Antes de enviar el manifiesto, compruebe<br/>que todos los valores de atributos</p>
+<p begin="00:02:26.86" end="00:02:29.81" style="1">van entrecomillados para XML.<br/></p>
+<p begin="00:02:29.81" end="00:02:31.92" style="1"><br/></p>
+<p begin="00:02:31.92" end="00:02:35.82" style="1">Tras enviar el manifiesto por FTP,<br/>se enviará un mensaje a la dirección</p>
+<p begin="00:02:35.82" end="00:02:39.08" style="1">indicada en la etiqueta de notificación<br/>para informarle del final del proceso.</p>
+<p begin="00:02:39.08" end="00:02:41.20" style="1"><br/></p>
+<p begin="00:02:41.20" end="00:02:41.72" style="1"><br/></p>
+</div>
+<div xml:lang="fr">
+<p begin="00:00:00.00" end="00:00:01.32" style="1"><br/></p>
+<p begin="00:00:01.32" end="00:00:03.80" style="1">Vous voudriez réencoder<br/>des vidéos de votre compte,</p>
+<p begin="00:00:03.80" end="00:00:06.73" style="1">peut-être parce que vous<br/>les avez codées en FLV</p>
+<p begin="00:00:06.73" end="00:00:09.77" style="1">et que vous les voulez à<br/>présent en H.264,</p>
+<p begin="00:00:09.77" end="00:00:13.73" style="1">peut-être parce que vous<br/>avez ajouté de nouveaux</p>
+<p begin="00:00:13.73" end="00:00:15.64" style="1">rendus à vos paramètres<br/>de conversion.</p>
+<p begin="00:00:15.64" end="00:00:18.27" style="1">Si vous disposez d'un<br/>compte Enterprise ou Pro,</p>
+<p begin="00:00:18.27" end="00:00:20.38" style="1">vous pouvez utiliser<br/>le transfert FTP batch</p>
+<p begin="00:00:20.38" end="00:00:22.36" style="1">Brightcove à cet effet.<br/></p>
+<p begin="00:00:22.36" end="00:00:24.78" style="1">Vous devrez faire<br/>trois choses.</p>
+<p begin="00:00:24.78" end="00:00:27.96" style="1">D'abord, envoyer une demande<br/>au support Brightcove</p>
+<p begin="00:00:27.96" end="00:00:31.58" style="1">pour ouvrir un compte FTP<br/>, si vous n'en possédez pas un.</p>
+<p begin="00:00:31.58" end="00:00:35.10" style="1">Ensuite, vous devrez créer<br/>des valeurs d'ID de référence</p>
+<p begin="00:00:35.10" end="00:00:38.69" style="1">pour les vidéos à convertir,<br/>si elles n'ont pas déjà</p>
+<p begin="00:00:38.69" end="00:00:40.00" style="1">d'ID de référence.<br/></p>
+<p begin="00:00:40.00" end="00:00:43.26" style="1">Vous pouvez faire ceci<br/>manuellement dans les paramètres</p>
+<p begin="00:00:43.26" end="00:00:48.19" style="1">vidéo ou utiliser le générateur d'ID<br/>de référence situé à cette adresse.</p>
+<p begin="00:00:48.19" end="00:00:51.40" style="1">Enfin, vous devrez créer un<br/>fichier de manifeste</p>
+<p begin="00:00:51.40" end="00:00:54.46" style="1">avec les instructions<br/>de reconversion et le</p>
+<p begin="00:00:54.46" end="00:00:57.38" style="1">charger avec l'adresse et<br/>les identifiants FTP fournis</p>
+<p begin="00:00:57.38" end="00:00:59.28" style="1">par le support Brightcove.<br/></p>
+<p begin="00:00:59.28" end="00:01:02.73" style="1">Le manifeste est un document<br/>XML simple ; vous pouvez télécharger</p>
+<p begin="00:01:02.73" end="00:01:05.53" style="1">un modèle en cliquant<br/>sur le lien connexe à</p>
+<p begin="00:01:05.53" end="00:01:08.88" style="1">cette vidéo ou en<br/>allant à cette adresse.</p>
+<p begin="00:01:08.88" end="00:01:12.37" style="1">Une fois le modèle obtenu,<br/>ouvrez un éditeur XML comme</p>
+<p begin="00:01:12.37" end="00:01:16.33" style="1">Xemplify ou un éditeur de<br/>texte et apportez les</p>
+<p begin="00:01:16.33" end="00:01:18.09" style="1">modifications suivantes.<br/></p>
+<p begin="00:01:18.09" end="00:01:21.23" style="1">Dans la balise du manifeste de<br/>chargement de l'éditeur,</p>
+<p begin="00:01:21.23" end="00:01:24.23" style="1">modifiez la valeur de l'ID<br/>d'éditeur pour qu'il corresponde</p>
+<p begin="00:01:24.23" end="00:01:28.43" style="1">au votre, que vous pouvez<br/>trouver dans votre profil.</p>
+<p begin="00:01:28.43" end="00:01:31.24" style="1">Vous pouvez également modifier<br/>la valeur du préparateur</p>
+<p begin="00:01:31.24" end="00:01:34.15" style="1">pour préciser qui a<br/>fait cette modification.</p>
+<p begin="00:01:34.15" end="00:01:37.41" style="1">Dans la balise notify, modifiez<br/>la valeur e-mail avec l'adresse</p>
+<p begin="00:01:37.41" end="00:01:40.92" style="1">qui recevra le courriel<br/>de notification du résultat.</p>
+<p begin="00:01:40.92" end="00:01:43.05" style="1">Dans la<br/>balise reencode-from-existing-source,</p>
+<p begin="00:01:43.05" end="00:01:48.24" style="1">modifiez la valeur<br/>title-refid avec l'ID de</p>
+<p begin="00:01:48.24" end="00:01:51.30" style="1">référence de la<br/>vidéo à réencoder.</p>
+<p begin="00:01:51.30" end="00:01:54.17" style="1">Si vous voulez conserver les<br/>imagettes et les captures</p>
+<p begin="00:01:54.17" end="00:01:57.77" style="1">d'écran existantes,<br/>changez la valeur</p>
+<p begin="00:01:57.77" end="00:01:59.53" style="1">overwrite images sur false.<br/></p>
+<p begin="00:01:59.53" end="00:02:03.10" style="1">Si vous voulez réencoder<br/>plusieurs vidéos, copiez</p>
+<p begin="00:02:03.10" end="00:02:05.57" style="1">simplement la balise<br/>reencode-from-existing-source</p>
+<p begin="00:02:05.57" end="00:02:10.10" style="1">complète et collez-la<br/>sous la balise actuelle, en vous</p>
+<p begin="00:02:10.10" end="00:02:12.35" style="1">assurant que vous la<br/>copiez bien avant la balise</p>
+<p begin="00:02:12.35" end="00:02:16.84" style="1">publisher-upload-manifest de fermeture.<br/></p>
+<p begin="00:02:16.84" end="00:02:20.96" style="1">Modifiez alors les valeurs<br/>title-refid pour inclure vos</p>
+<p begin="00:02:20.96" end="00:02:23.10" style="1">vidéos supplémentaires.<br/></p>
+<p begin="00:02:23.10" end="00:02:26.86" style="1">Avant d'envoyer le manifeste,<br/>vérifiez bien que toutes les</p>
+<p begin="00:02:26.86" end="00:02:29.81" style="1">valeurs d'attribut sont écrites<br/>entre guillemets, comme l'exige</p>
+<p begin="00:02:29.81" end="00:02:31.92" style="1">le XML.<br/></p>
+<p begin="00:02:31.92" end="00:02:35.82" style="1">Après envoi du manifeste via FTP,<br/>l'adresse de courrier électronique</p>
+<p begin="00:02:35.82" end="00:02:39.08" style="1">spécifiée dans la balise<br/>notify recevra un message</p>
+<p begin="00:02:39.08" end="00:02:41.20" style="1">de confirmation du traitement.<br/></p>
+<p begin="00:02:41.20" end="00:02:41.72" style="1">
+<br/>
+</p>
+</div>
+<div xml:lang="ja">
+<p begin="00:00:00.00" end="00:00:01.32" style="1"><br/></p> 
+<p begin="00:00:01.32" end="00:00:03.80" style="1">アカウントの既存の動画を再エンコードしたい場合があります。最初は FLV 形式にエンコードした動画を H.264 形式でエンコードしたい、またはトランスコード設定に新しいレンディションを追加した、といった理由が考えられます。<br/></p> 
+<p begin="00:00:15.64" end="00:00:18.27" style="1">Professional アカウントまたは Enterprise アカウントをご利用の場合、ブライトコーブのバッチ プロビジョニング プロセスを使用して、これが簡単にできます。<br/></p> 
+<p begin="00:00:22.36" end="00:00:24.78" style="1">3 つの手順が必要です。最初に、まだの場合は、ブライトコーブのサポートに Brightcove FTP アカウントの要求を提出します。</p> 
+<p begin="00:00:31.58" end="00:00:35.10" style="1">次に、トランスコードしたい動画に参照 ID がまだない場合は、参照 ID 値を作成する必要があります。<br/></p> 
+<p begin="00:00:40.00" end="00:00:43.26" style="1">動画設定にて手動で作成できます。または、次のアドレスにある参照 ID ジェネレータ ツールを使用できます。</p> 
+<p begin="00:00:48.19" end="00:00:51.40" style="1">最後に、再トランスコードの指示を記載したマニフェスト ファイルを作成し、ブライトコーブのサポートから受け取った FTP アドレスと資格情報を使って、そのファイルをアップロードします。<br/></p> 
+<p begin="00:00:59.28" end="00:01:02.73" style="1">マニフェストは簡単な XML 文書です。この動画の関連リンクをクリックするか、または次のアドレスにアクセスして、そのテンプレートをダウンロードできます。</p> 
+<p begin="00:01:08.88" end="00:01:12.37" style="1">テンプレートを手に入れたら、Xemplify などの XML エディタまたはプレーン テキスト エディタを開き、以下の変更を行います。<br/></p> 
+<p begin="00:01:18.09" end="00:01:21.23" style="1">publisher upload manifest タグで、publisher ID の値を自分のアカウントのパブリッシャ ID に変更します。ID は、アカウント プロファイルにあります。</p> 
+<p begin="00:01:28.43" end="00:01:31.24" style="1">また、誰が変更したかを記録するために preparer 値を変更できます。</p> 
+<p begin="00:01:34.15" end="00:01:37.41" style="1">notify タグで、email の値を結果の通知を受け取るアドレスに変更します。</p> 
+<p begin="00:01:40.92" end="00:01:43.05" style="1">reencode-from-existing-source タグで、title-refid の値を、再エンコードしたい動画の参照 ID に変更します。</p> 
+<p begin="00:01:51.30" end="00:01:54.17" style="1">既存のサムネイルおよび動画静止画像をそのまま使用したい場合は、overwrite images の値を false に変更します。<br/></p> 
+<p begin="00:01:59.53" end="00:02:03.10" style="1">複数の動画を再エンコードしたい場合は、完成した reencode-from-existing-source タグをコピーし、既存のタグの下にそれを貼り付けます。publisher-upload-manifest の終了タグの前に貼り付けてください。<br/></p> 
+<p begin="00:02:16.84" end="00:02:20.96" style="1">次に、追加の動画を反映するために title-refid の値を変更します。<br/></p> 
+<p begin="00:02:23.10" end="00:02:26.86" style="1">マニフェストを提出する前に、XML の要件に従って、属性値がすべて引用符で囲まれていることを確認してください。<br/></p> 
+<p begin="00:02:31.92" end="00:02:35.82" style="1">FTP を通してマニフェストを提出した後、処理が完了すると、notify タグで指定した電子メール アドレスにメッセージが送信されます。<br/></p> 
+<p begin="00:02:41.20" end="00:02:41.72" style="1"><br/></p>
+</div>
+</body>
+</tt>
