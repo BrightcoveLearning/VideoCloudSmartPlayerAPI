@@ -63,6 +63,7 @@
 			BCL.chaptersTemplate = "{{#cuePointData}}<div class=\"BCL_chapter\" onclick=\"BCL.playChapter({{time}})\"><img class=\"thumbnail\" height=\"40\" width=\"75\" src=\"{{metadata}}\"/><br />{{name}}</div>{{/cuePointData}}";
 			// event listener for the player being ready
 			BCL.onTemplateReady = function(event) {
+				BCL.log("template ready");
 				// get modules
 				BCL.player = brightcove.api.getExperience("myExperience");
 				BCL.videoPlayer = BCL.player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
@@ -97,22 +98,31 @@
 					BCL.videoPlayer.play();
 				})
 			}
-			// play a chapter
+			// play the chapter
 			BCL.playChapter = function(time) {
-				console.log("starting the chapter");
-				// if the video is not playing, start it and function calls itself again
-				BCL.videoPlayer.getIsPlaying(function(data) {
-					if (data == true) {
+				BCL.videoPlayer.getIsPlaying(function(isPlaying){
+					if (isPlaying == true) {
 						BCL.videoPlayer.seek(time);
-					}
-					else {
-						// function recalls itself till result is true
+					} else {
 						BCL.videoPlayer.play();
-						BCL.playChapter(time);
+						BCL.time = time;
+						var t = window.setTimeout(BCL.seekToChapter,1000);
 					}
 				});
+				
 			}
-			// for development purposes only: reopen page with HTML5 player
+			// seek utility function
+			BCL.seekToChapter = function(){
+				BCL.videoPlayer.getIsPlaying(function(data) {
+					if (data == true) {
+						BCL.videoPlayer.seek(BCL.time);
+					} else {
+						BCL.videoPlayer.play();
+						var t = window.setTimeout(BCL.seekToChapter,1000);
+						// BCL.playChapter(time);
+					}
+				});
+			}			// for development purposes only: reopen page with HTML5 player
 			BCL.switchToHTML5 = function() {
 				var separator = "?";
 				if (document.location.href.indexOf("?", 0) > -1) {
@@ -125,6 +135,14 @@
 				var startOfQuery = document.location.href.indexOf("forceHTML", 0) - 1;
 				window.location = document.location.href.substring(0, startOfQuery);
 			};
+			// debugging tool - wraps console.log to avoid errors in IE 7 & 8
+			BCL.log = function(message) {
+			  if (window["console"] && console["log"]) {
+			    var d = new Date();
+			    console.log(d + ": ");
+			    console.log(message);
+			  }
+			}
 		</script>
 	</body>
 </html>
