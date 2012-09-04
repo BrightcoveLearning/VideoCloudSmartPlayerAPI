@@ -8,8 +8,8 @@
 		<h1>Smart Player API Mid-Roll "Bumper" Example</h1>
 		<p>The buttons below are for development purposes only, to switch between Flash and  HTML5 players. Do not use these in production, as the method is unsupported. You should let the Smart Player decide whether to load Flash or HTML5 instead.</p>
 		<div id="modeSwitch">
-			<button onclick="BCL.switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</button>
-			<button onclick="BCL.switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</button>
+			<button onclick="switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</button>
+			<button onclick="switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</button>
 		</div>
 		<!-- Start of Brightcove Player -->
 		<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
@@ -26,98 +26,99 @@
 		  <param name="@videoPlayer" value="1187529587001" />
 		  <!-- params for Smart Player API -->
 		  <param name="includeAPI" value="true" />
-		  <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+		  <param name="templateReadyHandler" value="onTemplateReady" />
 		</object>
 		
 		<script type="text/javascript">brightcove.createExperiences();</script>
 		
 		<!-- End of Brightcove Player -->
 		<script type="text/javascript">
-			// namespace for everything global
-			var BCL = {};
+			(function() {
 			// event listener for the player being ready
-			BCL.onTemplateReady = function(event) {
-			  console.log("BCL.onTemplateReady");
-			  BCL.player = brightcove.api.getExperience("myExperience");
-				BCL.videoPlayer = BCL.player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
-			  // capture the original video id 
-			  BCL.videoPlayer.getCurrentVideo( function(videoDTO) {
-				  	BCL.originalID = videoDTO.id;
-				  } );
-			  // get a reference to the cue points module and set a listener
-			  BCL.cuePointsModule = BCL.player.getModule(brightcove.api.modules.APIModules.CUE_POINTS);
-			  BCL.cuePointsModule.addEventListener(brightcove.api.events.CuePointEvent.CUE, BCL.onCuePoint);
-			 } 
-
-			// Cue points handler
-			BCL.onCuePoint = function(event) {
-				console.log("cue point");
-				console.log(event);
-				var bumper = {};
-				// remove the listener so that we don't catch the event again when we restart the video
-				BCL.cuePointsModule.removeEventListener(brightcove.api.events.CuePointEvent.CUE, BCL.onCuePoint);
-				// pause the main video
-				BCL.videoPlayer.pause(true);
-				// save the restart position - add .1 seconds to make sure we don't trip on the cue point again when we restart the main video
-				BCL.restartPoint = event.cuePoint.time + .1;
-				// the "bumper" video id is stored in a JSON string in the cue point metadata -- you can also store it elsewhere
-				bumper = JSON.parse(event.cuePoint.metadata);
-				console.log(bumper);
-				BCL.playBumper(bumper.bumperID);
-			}
-			// play the "bumper"
-			BCL.playBumper = function(videoID) {
-				console.log("starting the bumper");
-				// add listener for bumper complete
-				BCL.videoPlayer.addEventListener(brightcove.api.events.MediaEvent.COMPLETE, BCL.onBumperComplete);
-				// play the "bumper"
-				BCL.videoPlayer.loadVideoByID(videoID);
-			}
-			// bumper complete handler
-			BCL.onBumperComplete = function(event) {
-				console.log("Bumper Complete");
-				// remove the event listener because we don't want this handler executed when the main video completes
-				BCL.videoPlayer.removeEventListener(brightcove.api.events.MediaEvent.COMPLETE, BCL.onBumperComplete);
-				BCL.videoPlayer.loadVideoByID(BCL.originalID);
-				BCL.videoPlaying();
-			}
-			
-			BCL.videoPlaying = function () {
-				console.log("check playing");
-				BCL.videoPlayer.getIsPlaying(function(data) {
-					if (data == true) {
-						console.log(data);
-						BCL.videoPlayer.seek(BCL.restartPoint);
-						// add a listener for main video complete to reset
-						BCL.videoPlayer.addEventListener(brightcove.api.events.MediaEvent.COMPLETE, BCL.onMainComplete);
-					}
-					else {
-						// function recalls itself till result is true
-						BCL.videoPlaying();
-					}
-				});
-			}
-			// handler for main video complete
-			BCL.onMainComplete = function(event) {
-				console.log("main complete");
-				// remove this listener
-				BCL.videoPlayer.removeEventListener(brightcove.api.events.MediaEvent.COMPLETE, BCL.onMainComplete);
-				// reset the cue points listener for replay or new videos
-				BCL.cuePointsModule.addEventListener(brightcove.api.events.CuePointEvent.CUE, BCL.onCuePoint);
-			}
-			// for development purposes only: reopen page with HTML5 player
-			BCL.switchToHTML5 = function() {
-				var separator = "?";
-				if (document.location.href.indexOf("?", 0) > -1) {
-					separator = "&";
-				}
-				window.location = document.location.href + separator + "forceHTML=true";
-			};
-			// for development purposes only: switch back to Flash
-			BCL.switchToFlash = function() {
-				var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
-				window.location = document.location.href.substring(0, startOfQuery);
-			};
+  			var restartPoint;
+  			onTemplateReady = function(event) {
+  			  console.log("onTemplateReady");
+  			  player = brightcove.api.getExperience("myExperience");
+  				videoPlayer = player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
+  			  // capture the original video id 
+  			  videoPlayer.getCurrentVideo( function(videoDTO) {
+  				  	originalID = videoDTO.id;
+  				  } );
+  			  // get a reference to the cue points module and set a listener
+  			  cuePointsModule = player.getModule(brightcove.api.modules.APIModules.CUE_POINTS);
+  			  cuePointsModule.addEventListener(brightcove.api.events.CuePointEvent.CUE, onCuePoint);
+  			 } 
+  
+  			// Cue points handler
+  			onCuePoint = function(event) {
+  				console.log("cue point");
+  				console.log(event);
+  				var bumper = {};
+  				// remove the listener so that we don't catch the event again when we restart the video
+  				cuePointsModule.removeEventListener(brightcove.api.events.CuePointEvent.CUE, onCuePoint);
+  				// pause the main video
+  				videoPlayer.pause(true);
+  				// save the restart position - add .1 seconds to make sure we don't trip on the cue point again when we restart the main video
+  				restartPoint = event.cuePoint.time + .1;
+  				// the "bumper" video id is stored in a JSON string in the cue point metadata -- you can also store it elsewhere
+  				bumper = JSON.parse(event.cuePoint.metadata);
+  				console.log(bumper);
+  				playBumper(bumper.bumperID);
+  			}
+  			// play the "bumper"
+  			playBumper = function(videoID) {
+  				console.log("starting the bumper");
+  				// add listener for bumper complete
+  				videoPlayer.addEventListener(brightcove.api.events.MediaEvent.COMPLETE, onBumperComplete);
+  				// play the "bumper"
+  				videoPlayer.loadVideoByID(videoID);
+  			}
+  			// bumper complete handler
+  			onBumperComplete = function(event) {
+  				console.log("Bumper Complete");
+  				// remove the event listener because we don't want this handler executed when the main video completes
+  				videoPlayer.removeEventListener(brightcove.api.events.MediaEvent.COMPLETE, onBumperComplete);
+  				videoPlayer.loadVideoByID(originalID);
+  				videoPlaying();
+  			}
+  			
+  			videoPlaying = function () {
+  				console.log("check playing");
+  				videoPlayer.getIsPlaying(function(data) {
+  					if (data == true) {
+  						console.log(data);
+  						videoPlayer.seek(restartPoint);
+  						// add a listener for main video complete to reset
+  						videoPlayer.addEventListener(brightcove.api.events.MediaEvent.COMPLETE, onMainComplete);
+  					}
+  					else {
+  						// function recalls itself till result is true
+  						videoPlaying();
+  					}
+  				});
+  			}
+  			// handler for main video complete
+  			onMainComplete = function(event) {
+  				console.log("main complete");
+  				// remove this listener
+  				videoPlayer.removeEventListener(brightcove.api.events.MediaEvent.COMPLETE, onMainComplete);
+  				// reset the cue points listener for replay or new videos
+  				cuePointsModule.addEventListener(brightcove.api.events.CuePointEvent.CUE, onCuePoint);
+  			}
+  			// for development purposes only: reopen page with HTML5 player
+  			switchToHTML5 = function() {
+  				var separator = "?";
+  				if (document.location.href.indexOf("?", 0) > -1) {
+  					separator = "&";
+  				}
+  				window.location = document.location.href + separator + "forceHTML=true";
+  			};
+  			// for development purposes only: switch back to Flash
+  			switchToFlash = function() {
+  				var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
+  				window.location = document.location.href.substring(0, startOfQuery);
+  			};
+      })();
 		</script>
 
 	</body>
