@@ -82,7 +82,7 @@
       </div>
     </div>
     <script type="text/javascript">
-      (function() {
+      (function(window) {
         var image = document.getElementById("cta");
         var clickThru = document.getElementById("ctaLink");
         //event listener for template loaded
@@ -128,7 +128,7 @@
             console.log(message);
           };
         };
-      })();
+      })(window);
     </script>
 
   </body>

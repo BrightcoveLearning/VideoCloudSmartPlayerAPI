@@ -3,6 +3,14 @@
 	<head>
 		<title>Player API Exercise 1</title>
 		<link rel="stylesheet" type="text/css" href="SmartPlayerAPI.css" />
+		<style>
+    .BrightcoveExperience {
+      float: left;
+    }
+    fieldset {
+      float: right;
+    }
+    </style>
 	</head>
 	<body>
 		<h1>Smart Player API Getting Video Data Example</h1>
@@ -37,21 +45,21 @@
 			<div id="results"></div>
 		</fieldset>
 		<!-- include handlebars.js templating system -->
-		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.0.beta.6.js"></script>
+		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript">
-			(function() {			
+			(function(window) {			
   			// markup templates
   			var htmlTemplate = "<p>Tags:</p><ul>{{#tags}}<li>{{.}}</li>{{/tags}}</ul>";
   			// event listener for the player being ready
   			onTemplateReady = function(event) {
-  			  console.log("onTemplateReady");
+  			  log("onTemplateReady");
   			  player = brightcove.api.getExperience("myExperience");
   			  // get a reference to the video player
   			  videoPlayer = player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
   			  // get the long description for the video and display it
   			  // refactoring tip: if the handler is brief, use an anonymous function for it (as below) - for more complex handlers, you can simply include the function name here and define it elsewhere
   			  videoPlayer.getCurrentVideo( function(videoDTO) {
-  		  		console.log(videoDTO);
+  		  		log(videoDTO);
             var template = Handlebars.compile(htmlTemplate);
             var data = videoDTO;
             var results = template(data);
@@ -59,7 +67,7 @@
   		  	});
   			}
   			// for development purposes only: reopen page with HTML5 player
-  			switchToHTML5 = function() {
+  			window.switchToHTML5 = function() {
   				var separator = "?";
   				if (document.location.href.indexOf("?", 0) > -1) {
   					separator = "&";
@@ -67,11 +75,19 @@
   				window.location = document.location.href + separator + "forceHTML=true";
   			};
   			// for development purposes only: switch back to Flash
-  			switchToFlash = function() {
+  			window.switchToFlash = function() {
   				var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
   				window.location = document.location.href.substring(0, startOfQuery);
   			};
-      })();
+  			// debugging tool - wraps console.log to avoid errors in IE 7 & 8
+  			function log(message) {
+  			  if (window["console"] && console["log"]) {
+  			    var d = new Date();
+  			    console.log(d + ": ");
+  			    console.log(message);
+  			  }
+  			}
+      })(window);
 		</script>
 
 	</body>

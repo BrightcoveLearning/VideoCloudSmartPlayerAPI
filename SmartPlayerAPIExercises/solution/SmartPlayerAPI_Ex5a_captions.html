@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
+    <title>Captioning Sample</title>
+    <style>
+    body {
+      font-family: sans-serif;
+      margin-top: 30px;
+      margin-left: 30px;
+      width: 650px;
+    }
+    </style>
+    <link rel="stylesheet" type="text/css" href="http://files.brightcove.com/BCL-document.css" media="screen" />
+  </head>
+  <body>
+<h1>Alternate Captions Example</h1>
+<p>This example uses captions that have been uploaded to Video Cloud and demonstrates the control of captions via the Smart Player API.</p>
+<!-- Start of Brightcove Player -->
+<div style="display:none">
+</div>
+<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+<object id="myExperience" class="BrightcoveExperience">
+  <param name="bgcolor" value="#FFFFFF" />
+  <param name="width" value="480" />
+  <param name="height" value="270" />
+  <param name="playerID" value="1866680592001" />
+  <param name="playerKey" value="AQ~~,AAABmA9XpXk~,-Kp7jNgisreSyRWNpQywJF2UPu7dQK6k" />
+  <param name="isVid" value="true" />
+  <param name="isUI" value="true" />
+  <param name="dynamicStreaming" value="true" />
+  <param name="@videoPlayer" value="1866729857001" />
+  <!-- params for Universal Player API -->
+  <param name="includeAPI" value="true" />
+  <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+</object>
+<script type="text/javascript">brightcove.createExperiences();</script>
+<!-- End of Brightcove Player -->
+<div style="border:1px #CCCCCC solid;padding:4px;background-color:#F4F4F4;">
+  <fieldset style="width:350px;height:150px;float:right;font-face:sans-serif;color:#660000;background-color:#FFF;margin-left:5px;">
+    <legend>Results</legend>
+    <div id="results">
+    </div>
+  </fieldset>
+  <div class="BCLbutton" onclick="BCL.getCaptions()">
+    Are Captions On?
+  </div>
+  <div class="BCLbutton" onclick="BCL.showCaptions(true)">
+    Show Captions
+  </div>
+  <div class="BCLbutton" onclick="BCL.showCaptions(false)">
+    Hide Captions
+  </div>
+  <div class="BCLbutton" onclick="BCL.getStyles()">
+    Get Caption Styles
+  </div>
+  <div class="BCLbutton" onclick="BCL.setStyles(BCL.lightOnDark)">
+    Set Captions Style: light on dark
+  </div>
+  <div class="BCLbutton" onclick="BCL.setStyles(BCL.darkOnLight)">
+    Set Captions Style: dark on light
+  </div>
+</div>
+<script>
+  //(function() {
+    var BCL = {};
+    BCL.lightOnDark = "show-background:true;background-color:#666666;color:#F4F4F4;";
+    BCL.darkOnLight = "show-background:true;background-color:#F4F4F4;color:#666666;";
+    BCL.results = document.getElementById("results");
+    BCL.onTemplateReady = function(evt) {
+      BCL.results.innerHTML = "player ready";
+      BCL.player = brightcove.api.getExperience("myExperience");
+      BCL.captionsModule = BCL.player.getModule(brightcove.api.modules.APIModules.CAPTIONS);
+    }
+    BCL.getCaptions = function() {
+      BCL.captionsModule.getCaptionsEnabled(function(captionsOn) {
+        BCL.results.innerHTML = "Captions on: " + captionsOn;
+      })
+    }
+    BCL.showCaptions = function(show) {
+      BCL.captionsModule.setCaptionsEnabled(show);
+      BCL.captionsModule.getCaptionsEnabled(function(captionsOn) {
+        BCL.results.innerHTML = "Captions on: " + captionsOn;
+      })
+    }
+    BCL.getStyles = function() {
+      BCL.captionsModule.getStyleOptions(function(styles) {
+        BCL.results.innerHTML = "Style options: " + styles;
+      })
+    }
+    BCL.setStyles = function(styles) {
+      BCL.captionsModule.setStyleOptions(styles);
+      BCL.captionsModule.getStyleOptions(function(styles) {
+        BCL.results.innerHTML = "Style options: " + styles;
+      })
+    }
+ // })();
+</script>
+  </body>
+</html>

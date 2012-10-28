@@ -10,6 +10,9 @@
 			float: left;
 			margin-right: 5px;
 		}
+		fieldset {
+			float: right;
+		}
 		.BCL_playlist {
 			border: 1px #999 solid;
 			font-size: 10px;
@@ -63,9 +66,9 @@
 		<div id="BCL_playlist" class="BCL_playlist BCL_hide"></div>
 		<!-- include jquery and handlebars.js templating system -->
 		<script type="text/javascript" src="http://files.brightcove.com/jquery-1.8.1.min.js"></script>
-		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.0.beta.6.js"></script>
+		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript">
-			(function() {
+			(function(window) {
 				var chapterTime,player,videoPlayer,cuePointsModule;
 				// define the template for the chapters list
 				var chaptersTemplate = "{{#cuePointData}}<div id=\"{{name}}\" data-time=\"{{time}}\" class=\"BCL_chapter\"><img class=\"thumbnail\" height=\"40\" width=\"75\" src=\"{{metadata}}\"/><br />{{name}} {{formattedTime.h}}:{{formattedTime.s}}</div>{{/cuePointData}}";
@@ -188,7 +191,7 @@
 					return obj;
 				}
 				// for development purposes only: reopen page with HTML5 player
-				function switchToHTML5() {
+				window.switchToHTML5 = function() {
 					var separator = "?";
 					if (document.location.href.indexOf("?", 0) > -1) {
 						separator = "&";
@@ -196,7 +199,7 @@
 					window.location = document.location.href + separator + "forceHTML=true";
 				};
 				// for development purposes only: switch back to Flash
-				function switchToFlash() {
+				window.switchToFlash = function() {
 					var startOfQuery = document.location.href.indexOf("forceHTML", 0) - 1;
 					window.location = document.location.href.substring(0, startOfQuery);
 				};
@@ -208,7 +211,7 @@
 				    console.log(message);
 				  }
 				}
-			})();
+			})(window);
 		</script>
 	</body>
 </html>

@@ -52,7 +52,7 @@
 			
 			// main video progress handler
 			BCL.onMainProgress = function(event) {
-				console.log("main progress 1 " + event.postion);
+				console.log("main progress 1 " + event.position);
 				// stop after 4 seconds
 				if (event.position > 4) {
 					// remove the event listener
@@ -89,7 +89,7 @@
 				console.log("check playing");
 				BCL.videoPlayer.getIsPlaying(function(data) {
 						if (data == true) {
-							console.log(data);
+							console.log("seeking to: " + BCL.restartPoint);
 							BCL.videoPlayer.seek(BCL.restartPoint);
 							// add a listener for main video complete to reset
 							BCL.videoPlayer.addEventListener(brightcove.api.events.MediaEvent.COMPLETE, BCL.onMainComplete);

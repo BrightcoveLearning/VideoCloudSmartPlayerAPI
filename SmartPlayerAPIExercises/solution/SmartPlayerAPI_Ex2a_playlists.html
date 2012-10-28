@@ -4,6 +4,15 @@
 		<title>Mulitiple Playlist Exercise 2a</title>
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="SmartPlayerAPI.css" />
+		<style>
+		.BrightcoveExperience {
+		  float: left;
+		}
+		fieldset {
+		  float: right;
+		}
+		</style>
+
 	</head>
 	<body>
 		<h2>Smart Player API Multiple Playlists Example 1</h2>
@@ -54,9 +63,9 @@
 			<div id="results"></div>
     </fieldset><br>
 		<!-- include handlebars.js templating system -->
-		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.0.beta.6.js"></script>
+		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript">
-			(function() {
+			(function(window) {
   			// array of playlist IDs - substitute your list of playlist IDs
   			var playlists = [1323984735001,1323984733001,1323984734001];
   			// master array to hold retrieved playlist data
@@ -114,7 +123,7 @@
   				videoPlayer.loadVideoByID(videoID);
   			}
   			// for development purposes only: reopen page with HTML5 player
-  			switchToHTML5 = function() {
+  			window.switchToHTML5 = function() {
   				var separator = "?";
   				if (document.location.href.indexOf("?", 0) > -1) {
   					separator = "&";
@@ -122,11 +131,11 @@
   				window.location = document.location.href + separator + "forceHTML=true";
   			};
   			// for development purposes only: switch back to Flash
-  			switchToFlash = function() {
+  			window.switchToFlash = function() {
   				var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
   				window.location = document.location.href.substring(0, startOfQuery);
   			};
-			})();
+			})(window);
 		</script>
 	</body>
 </html>

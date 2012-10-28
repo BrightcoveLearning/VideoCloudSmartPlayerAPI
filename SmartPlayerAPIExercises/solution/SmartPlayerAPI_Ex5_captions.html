@@ -36,15 +36,17 @@
 		</div>
 		<div id="result"></div>
 		<!-- include handlebars.js templating system -->
-		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.0.beta.6.js"></script>
+		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript">
-			(function() {
+			(function(window) {
   			var player,videoPlayer,captionsModule,currentVideoID,subTitlesOn,language;
+  			var languages = {};
+  			var lightOnDark = "show-background:true;background-color:#666666;color:#F4F4F4;";
   			// markup templates
   			selectorTemplate = "<p>Select language for subtitles: <select id=\"languageSelector\" onchange=\"showSubTitles(this.options[this.selectedIndex].value)\"><option value=\"\">None</option>{{#languageArray}}<option value=\"{{code}}\">{{name}}</option>{{/languageArray}}</select></p>";
   			// listener for the Template Ready event
   			onTemplateReady = function(event) {
-  				console.log("EVENT: TEMPLATE_READY");
+  				log("EVENT: TEMPLATE_READY");
   				player = brightcove.api.getExperience("myExperience");
   				// get a reference to the video player module
   			  videoPlayer = player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
@@ -71,23 +73,18 @@
   					 **/
   					// console.log(videoDTO);
   					// save the current video ID, need it later
+  					log(videoDTO);
   					currentVideoID = videoDTO.id;
-  					var captionPaths = JSON.parse(videoDTO.longDescription);
-  					if (document.location.href.indexOf("forceHTML=true", 0) > 0) {
-  						// in html mode, use local dfxp file
-  						captionsModule.loadDFXP( captionPaths.localPath , videoDTO.id );
-  					}
-  					else {
-  						// in flash mode, use remote dfxp file
-  						captionsModule.loadDFXP( captionPaths.remotePath , videoDTO.id );
-  					}
+  					captionsModule.setCaptionsEnabled(false);
+  					captionsModule.loadDFXP( videoDTO.captions[0].URL, currentVideoID);
   			});
   			}
   			// captions load success handler
   			function onDFXPLoadSuccess(event) {
-  				console.log("DFXP Load Success");
+  				log("DFXP Load Success");
   				// console.log(event);
-  				languages = {};
+  				// set style options
+  				captionsModule.setStyleOptions(lightOnDark);
   				languages.languageArray = [];
   				// get languages in the DFXP file
   				captionsModule.getLanguages( currentVideoID, function(languageData) {
@@ -106,8 +103,8 @@
   			}
   			// captions load error handler
   			function onDFXPLoadError(event) {
-  				console.log("DFXP Load Error");
-  				console.log(event);
+  				log("DFXP Load Error");
+  				log(event);
   			}
   			// build the language selector
   			function buildSelector(){
@@ -118,8 +115,8 @@
   				document.getElementById("languageSelectorBlock").innerHTML = results;
   			}
   			// set up captions
-  			function showSubTitles(languageCode) {
-  				console.log("In showSubTitles "+ languageCode);
+  		  window.showSubTitles = function(languageCode) {
+  				log("In showSubTitles "+ languageCode);
   				// only do this if a subtitles language has been selected
   				if (languageCode != "") {
   					// set a flag to remember that subtitles are on
@@ -128,13 +125,14 @@
   					language = languageCode;
   					// set the language to turn on subtitles
   					captionsModule.setLanguage(languageCode);
+  					captionsModule.setCaptionsEnabled(true);
   				}
   				else {
   					// if no language was selected, set flag to know that captions are off
   					subTitlesOn = false;
   					language = null;
   					// turn captions off
-  					captionsModule.setLanguage(language);
+  					captionsModule.setCaptionsEnabled(false);
   				}
   			}
   			// get the name for a language code
@@ -159,12 +157,12 @@
   			}
   			// call caption fetcher for new video
   			function onMediaChange(event) {
-  				console.log("EVENT: media change");
+  				log("EVENT: media change");
   				// load captions
   				getCaptions();
   			}
   			// for development purposes only: reopen page with HTML5 player
-  			function switchToHTML5() {
+  			window.switchToHTML5 = function() {
   				var separator = "?";
   				if (document.location.href.indexOf("?", 0) > -1) {
   					separator = "&";
@@ -172,11 +170,19 @@
   				window.location = document.location.href + separator + "forceHTML=true";
   			};
   			// for development purposes only: switch back to Flash
-  			function switchToFlash() {
+  			window.switchToFlash = function() {
   				var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
   				window.location = document.location.href.substring(0, startOfQuery);
   			};
-      })();
+  			// debugging tool - wraps console.log to avoid errors in IE 7 & 8
+  			function log(message) {
+  			  if (window["console"] && console["log"]) {
+  			    var d = new Date();
+  			    console.log(d + ": ");
+  			    console.log(message);
+  			  }
+  			}
+      })(window);
 		</script>
 
 	</body>

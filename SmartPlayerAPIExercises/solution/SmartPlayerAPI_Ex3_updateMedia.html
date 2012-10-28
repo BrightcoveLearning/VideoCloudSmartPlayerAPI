@@ -4,6 +4,18 @@
 		<title>Mulitiple Playlist Exercise 3</title>
 				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="SmartPlayerAPI.css" />
+		<style>
+		body {
+  		width: 1024px;
+		}
+		.BrightcoveExperience {
+		  float: left;
+		}
+		fieldset {
+		  float: right;
+		}
+		</style>
+
 	</head>
 	<body>
 		<h2>Smart Player API Updating Media Example</h2>
@@ -12,11 +24,6 @@
 			<button onclick="switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</button>
 			<button onclick="switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</button>
 		</div>
-		<table>
-			<tbody>
-				<tr>
-					<td valign="top">
-						<!-- Start of Brightcove Player - replace with your player code - remember that the ActionScript/JavaScript APIs MUST be enabled in the player settings, and you must add two additonal param tags to the publishing code as I have done below, and that the <object> id value must match the id in the onTemplateReady function player = brightcove.api.getExperience("myExperience"); line -->
 								<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
 
 								<object id="myExperience" class="BrightcoveExperience">
@@ -37,25 +44,14 @@
 								<script type="text/javascript">brightcove.createExperiences();</script>
 
 								<!-- End of Brightcove Player -->
-					</td>
-					<td>
-						<div id="BCL_playlist"></div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<div id="BCL_playlistSelector"></div>
-					</td>
-			</tbody>
-		</table>
-    <fieldset>
+   <fieldset>
       <legend>Results</legend>
 			<div id="results"></div>
     </fieldset><br>
 		<!-- include handlebars.js templating system -->
-		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.0.beta.6.js"></script>
+		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript">
-			(function() {
+			(function(window) {
   			resultsTemplate = "<img src=\"{{videoStillURL}}\"/><br/><p>New Video Still</p>";
   			onTemplateReady = function(event) {
   			  console.log("onTemplateReady");
@@ -80,7 +76,7 @@
   			  });
   			}
   			// for development purposes only: reopen page with HTML5 player
-  			switchToHTML5 = function() {
+  			window.switchToHTML5 = function() {
   				var separator = "?";
   				if (document.location.href.indexOf("?", 0) > -1) {
   					separator = "&";
@@ -88,11 +84,11 @@
   				window.location = document.location.href + separator + "forceHTML=true";
   			};
   			// for development purposes only: switch back to Flash
-  			switchToFlash = function() {
+  			window.switchToFlash = function() {
   				var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
   				window.location = document.location.href.substring(0, startOfQuery);
   			};
-			})();
+			})(window);
 		</script>
 	</body>
 </html>
