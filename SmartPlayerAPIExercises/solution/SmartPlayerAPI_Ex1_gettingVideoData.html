@@ -34,6 +34,7 @@
 		  <param name="@videoPlayer" value="928121847001" />
 		  <!-- params for Smart Player API -->
 		  <param name="includeAPI" value="true" />
+		  <param name="templateLoadHandler" value="onTemplateLoad" />
 		  <param name="templateReadyHandler" value="onTemplateReady" />
 		</object>
 
@@ -48,12 +49,17 @@
 		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript">
 			(function(window) {			
+  			var player,videoPlayer;
   			// markup templates
   			var htmlTemplate = "<p>Tags:</p><ul>{{#tags}}<li>{{.}}</li>{{/tags}}</ul>";
+  			// handler for template loaded
+  			onTemplateLoad = function(experienceID) {
+    			log("onTemplateLoad");
+    			player = brightcove.api.getExperience(experienceID);
+  			}
   			// event listener for the player being ready
   			onTemplateReady = function(event) {
   			  log("onTemplateReady");
-  			  player = brightcove.api.getExperience("myExperience");
   			  // get a reference to the video player
   			  videoPlayer = player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
   			  // get the long description for the video and display it

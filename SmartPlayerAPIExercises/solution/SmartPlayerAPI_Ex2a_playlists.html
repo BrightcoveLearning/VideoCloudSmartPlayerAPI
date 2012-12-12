@@ -40,6 +40,7 @@
 								  <param name="@videoPlayer" value="928121847001" />
 								  <!-- params for Smart Player API -->
 								  <param name="includeAPI" value="true" />
+								  <param name="templateLoadHandler" value="onTemplateLoad"/>
 								  <param name="templateReadyHandler" value="onTemplateReady" />
 								</object>
 
@@ -66,6 +67,7 @@
 		<script type="text/javascript" src="http://files.brightcove.com/handlebars-1.0.rc.1.js"></script>
 		<script type="text/javascript">
 			(function(window) {
+  			var player,videoPlayer,ContentModule;
   			// array of playlist IDs - substitute your list of playlist IDs
   			var playlists = [1323984735001,1323984733001,1323984734001];
   			// master array to hold retrieved playlist data
@@ -73,11 +75,16 @@
   			// markup templates
   			var selectorTemplate = "<select id='playlistSelector' onChange=\"onPlaylistSelect(this.selectedIndex - 1)\"><option>Select a playlist</option>{{#playlistsData}}<option value=\"{{id}}\">{{displayName}}</option>{{/playlistsData}}</select>";
   			var playlistTemplate = "{{#videos}}<div class=\"playlist\"><a onclick=\"playVideo({{id}})\"><img class=\"thumbnail\" height=\"40\" width=\"75\" src=\"{{thumbnailURL}}\"/><div class=\"description\"><span style=\"font-size:12px;\">{{displayName}}</span><br/>{{shortDescription}}</div></a></div>{{/videos}}";
+  			// handler for template load
+  			onTemplateLoad = function(experienceID) {
+    			log("template loaded");
+    			player = brightcove.api.getExperience(experienceID);
+  			}
+  			
   			// event listener for the player being ready
   			onTemplateReady = function(event) {
-  			  console.log("onTemplateReady");
+  			  log("onTemplateReady");
   			  // get references to the player and modules
-  			  player = brightcove.api.getExperience("myExperience");
   			  videoPlayer = player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
   			  contentModule = player.getModule(brightcove.api.modules.APIModules.CONTENT);
   			  // start retrieving the playlists
@@ -101,7 +108,7 @@
   			// function that builds the playlist selector
   			buildPlaylistSelector = function(playlistsData) {
   			  // populate the selector template with data
-  			  console.log(playlistsData);
+  			  log(playlistsData);
           var obj = {};
           obj.playlistsData = playlistsData;
           var template = Handlebars.compile(selectorTemplate);
@@ -112,7 +119,7 @@
   			// listener for playlist selection - builds the playlist
   			onPlaylistSelect = function(index) {
   			  // populate the playlist template with data
-  			  console.log(playlistsData[index]);
+  			  log(playlistsData[index]);
           var template = Handlebars.compile(playlistTemplate);
           var data = playlistsData[index];
           var results = template(data);
@@ -135,6 +142,15 @@
   				var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
   				window.location = document.location.href.substring(0, startOfQuery);
   			};
+  			// debugging tool - wraps console.log to avoid errors in IE 7 & 8
+  			log = function(message) {
+  			  if (window["console"] && console["log"]) {
+  			    var d = new Date();
+  			    console.log(d + ": ");
+  			    console.log(message);
+  			  }
+  			}
+
 			})(window);
 		</script>
 	</body>

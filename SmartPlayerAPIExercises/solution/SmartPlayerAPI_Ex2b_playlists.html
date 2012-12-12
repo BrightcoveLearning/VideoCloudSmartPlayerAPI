@@ -94,6 +94,7 @@
         <param name="@videoPlayer" value="928121847001" />
         <!-- params for Smart Player API -->
         <param name="includeAPI" value="true" />
+        <param name="templateLoadHandler" value="onTemplateLoad"/>
         <param name="templateReadyHandler" value="onTemplateReady" />
       </object>
 
@@ -124,16 +125,21 @@
             arrayIndex = -1;
           })
         }();
+        var player,VideoPlayer,contentModule;
         // markup templates for the playlist selector and playlist
         var selectorTemplate = "{{#playlistsData}}<span class=\"btn\" onclick=\"onPlaylistSelect(this.getAttribute(\'data-value\'))\" data-value=\"{{returnArrayIndex}}\">{{displayName}}</span>{{/playlistsData}}";
         var playlistTemplate = "{{#videos}}<div class=\"playlist\"><a onclick=\"playVideo({{id}})\"><img class=\"thumbnail\" height=\"40\" width=\"75\" src=\"{{thumbnailURL}}\"/><div class=\"description\"><span style=\"font-size:12px;\">{{displayName}}</span><br/>{{shortDescription}}</div></a></div>{{/videos}}";
+        // template load handler
+        onTemplateLoad = function(experienceID) {
+          /***
+          get references to the player
+          ***/
+          log("template loaded");
+          player = brightcove.api.getExperience(experienceID);
+        }
         // event listener for the player being ready
         onTemplateReady = function(event) {
           // console.log("onTemplateReady");
-          /***
-          get references to the player and modules - the argument "myExperience" MUST match the value of the id attribute for the <object> tag in the player publishing code - adjust here or there to make them match
-          ***/
-          player = brightcove.api.getExperience("myExperience");
           videoPlayer = player.getModule(brightcove.api.modules.APIModules.VIDEO_PLAYER);
           contentModule = player.getModule(brightcove.api.modules.APIModules.CONTENT);
           // start retrieving the playlists
@@ -141,7 +147,7 @@
         }
         // retrieves the playlists from the Video Cloud service - because the calls are asynchronous, this function needs to keep calling itself until it has looped over the entire playlist ids array
         buildPlaylistsData = function(counter) {
-          // console.log(parseInt(playlists[counter]));
+          // log(parseInt(playlists[counter]));
           contentModule.getPlaylistByID(playlists[counter] , function(jsonData) {
             obj.playlistsData.push(jsonData);
             if (counter < playlists.length - 1) {
@@ -166,7 +172,7 @@
         }
         // listener for playlist selection - builds the playlist
         onPlaylistSelect = function(index) {
-          console.log(index);
+          log(index);
           // populate the template with data
           var template = Handlebars.compile(playlistTemplate);
           var data = obj.playlistsData[index];
@@ -190,6 +196,14 @@
           var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
           window.location = document.location.href.substring(0, startOfQuery);
         };
+        // debugging tool - wraps console.log to avoid errors in IE 7 & 8
+        log = function(message) {
+          if (window["console"] && console["log"]) {
+            var d = new Date();
+            console.log(d + ": ");
+            console.log(message);
+          }
+        }
 
       })(window);
     </script>
