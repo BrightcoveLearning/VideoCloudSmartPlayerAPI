@@ -1,0 +1,12 @@
+{
+  "CTAImages" : [
+    {
+      "linkURL" : "http://support.brightcove.com/en/video-cloud/training-videos",
+      "imageURL" : "http://files.brightcove.com/bcl-cta-1.png"
+    },
+    {
+      "linkURL" : "http://brightcove.com/",
+      "imageURL" : "http://files.brightcove.com/bcl-cta-2.png"
+    }
+  ]
+}

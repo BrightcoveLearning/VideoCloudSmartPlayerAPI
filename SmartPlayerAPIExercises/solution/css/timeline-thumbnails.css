@@ -1,0 +1,54 @@
+/********************************
+styles for timeline-thumbnails sample
+********************************/
+.player-outer-container {
+  position: relative;
+}
+/* positioning for safari html player */
+.htmlPlayer-safari {
+  /* numbers below depend on player size/layout for the specific implementation */
+  top: 245px;
+  left: 96px;
+  width: 290px;
+}
+/* positioning for chrome html player */
+.htmlPlayer-chrome {
+  /* numbers below depend on player size/layout for the specific implementation */
+  top: 240px;
+  left: 50px;
+  width: 290px;
+}
+/* positioning for flash player */
+.flashPlayer {
+  /* numbers below depend on player size/layout for the specific implementation */
+  top: 230px;
+  left: 130px;
+  width: 210px;
+}
+#BCL_thumbnails {
+  position: absolute;
+  /* number below depends on size of thumbnails */
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0);
+}
+.thumbnailContainer {
+  position: absolute;
+  /* height depends on height of thumbnails */
+  height: 80px;
+  width: 100%;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+}
+.videoThumbnail {
+  position: relative;
+  /* numbers below depend on the size of the thumbnails */
+  top: -69px;
+  left: -60px;
+  width: 120px;
+  cursor: pointer;
+  vertical-align: top;
+  border: 1px #333 solid;
+}
+.img-hidden {
+  opacity: 0;
+}

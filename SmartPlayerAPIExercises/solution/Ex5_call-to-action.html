@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <!-- change title to match the h1 heading -->
+    <title>Smart Player API Samples: Call to Action</title>
+    
+    <link href="http://files.brightcove.com/proxima-nova/font-faces.css" rel="stylesheet" type="text/css" />
+    <link href="./css/api-samples.css" rel="stylesheet" type="text/css" />
+    <link href="./css/call-to-action.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <div id="main">
+        <!-- id of first section is always "top" -->
+        <div id="top" class="section">
+          <h1><a name="top"></a>Smart Player API Samples: Call to Action</h1>
+          <p>This sample displays one or more call-to-action images with click-through URLs while a video is playing. The appearance and disappearance of the images is based on cue points, so that they can be coordinated with the content. Read on to see how it works, and see the working sample in the <strong>player</strong> section below.</p>
+        </div>
+        <!-- every div class section must have an id -->
+            <div class="section" id="resources">
+              <h2><a name="resources"></a>API resources used</h2>
+              <p>This sample uses the following API resources</p>
+              <h4>Modules and methods</h4>
+              <ul>
+                <li>VIDEO_PLAYER
+                  <ul>
+                    <li>getCurrentVideo()</li>
+                  </ul>
+                </li>
+                <li>CUE_POINTS
+                  <ul>
+                    <li>addEventListener()</li>
+                  </ul>
+                </li>  
+              </ul>
+              <h4>Events</h4>
+              <ul>
+                <li>templateLoad</li>
+                <li>templateReady</li>
+                <li>CuePoint: CUE</li>  
+              </ul>
+            </div>
+        <div class="section" id="player">
+          <!-- h2 contents will be in page navigation label - 21 characters (including spaces) maximum -->
+          <h2><a name="player"></a>The Player</h2>
+          <p>A standard Chromeless Video Player is used for this sample.</p>
+          <p class="text-warning">Note that the buttons below are for development purposes only &mdash; do not use in production.</p>
+          <div id="modeSwitch">
+            <span class="button" onclick="BCL.switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</span>
+            <span class="button" onclick="BCL.switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</span>
+          </div>
+          <div class="player-block">
+            <!-- the call-to-action image -->
+            <div id="BCL" class="BCL-image">
+                <a id="ctaLink"><img id="cta" class="transparent" src="http://files.brightcove.com/1x1.png" /></a>
+            </div>
+            <!-- Start of Brightcove Player -->
+            <script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+            <object id="myExperience921449663001" class="BrightcoveExperience">
+              <param name="bgcolor" value="#FFFFFF" />
+              <param name="width" value="480" />
+              <param name="height" value="270" />
+              <param name="playerID" value="2079935931001" />
+              <param name="playerKey" value="AQ~~,AAAA1oy1bvE~,ALl2ezBj3WE0z3yX6Xw29sdCvkH5GCJv" />
+              <param name="isVid" value="true" />
+              <param name="isUI" value="true" />
+              <param name="dynamicStreaming" value="true" />
+              <param name="@videoPlayer" value="928087275001" />
+              <!-- smart player api params -->
+              <param name="includeAPI" value="true" />
+              <param name="templateLoadHandler" value="BCL.onTemplateLoad" />
+              <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+            </object>
+            <script type="text/javascript">brightcove.createExperiences();</script>
+            <!-- End of Brightcove Player -->
+          </div>
+        </div>
+        <div class="section" id="videoProperties">
+          <h2><a name="videoProperties"></a>Video metadata</h2>
+          <p>Some of the information needed for this sample is stored in the video </p>
+          <h3>Image data</h3>
+          <p>The data for the call-to-action images is stored in the video <code>longDescription</code> property &mdash; you can do this via the Media API or in Video Cloud Studio. To make it easy to use in JavaScript, we store it as a JSON object containing an array of image objects:</p>
+<pre><code>
+{
+  "CTAImages" : [
+    {
+      "linkURL" : "http://support.brightcove.com/en/video-cloud/training-videos",
+      "imageURL" : "http://files.brightcove.com/bcl-cta-1.png"
+    },
+    {
+      "linkURL" : "http://brightcove.com/",
+      "imageURL" : "http://files.brightcove.com/bcl-cta-2.png"
+    }
+  ]
+}
+</code></pre>
+          <h3>Cue Points</h3>
+          <p>Code cue points are used to signal when the call-to-action images should appear and disappear. They are set in pairs &mdash; the first cue point in each pair is given the name <code>ctaStart</code>, and the second one is named <code>ctaEnd</code>. No metadata is set for the cue points, as the image data described above has everthing required. If you just wanted to display an image, without a click-through URL, you could just store it in the cue point metadata field.</p>
+        </div>
+        <div class="section" id="html">
+          <h2><a name="html"></a>HTML and CSS</h2>
+          <p>For the call-to-action image, there is a <code>div</code> containing an <code>img</code> tag that is wrapped in an <code>a</code> tag. The <code>div</code> is entered just above the player publishing code:</p>
+<pre><code>
+&lt;div class="player-block"&gt;
+  &lt;!-- the call-to-action image --&gt;
+  &lt;div id="BCL" class="BCL-image"&gt;
+      &lt;a id="ctaLink"&gt;&lt;img id="cta" class="transparent" src="http://files.brightcove.com/1x1.png" /&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;!-- Start of Brightcove Player --&gt;
+  &lt;script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"&gt;&lt;/script&gt;
+  &lt;object id="myExperience921449663001" class="BrightcoveExperience"&gt;
+    &lt;param name="bgcolor" value="#FFFFFF" /&gt;
+    // ...
+</code></pre>
+          <p>CSS is used to position the image over the player, and to hide it initially. Here is the CSS code used for this sample:</p>
+<pre><code>
+/**********************************************
+Styles for Call to Action sample
+**********************************************/
+.BCL-image a {
+   cursor: pointer;
+}
+.player-block {
+  padding: 0px;
+  position:relative;
+}
+.BCL-image {
+  position:absolute;
+  /******
+  the following values determine the location of the CTA image;
+  they are pixels measurements from the top left corner of the
+  video player - these are defaults that can be overridden in
+  the long description data
+  ******/
+  left: 20px;
+  top: 120px;
+
+}
+.BCL-image img {
+  margin: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.BCL-image img.transparent {
+  visibility: visible;
+  opacity:0;
+}
+.BCL-image img.opaque {
+  visibility: visible;
+  opacity: 1;
+}
+</code></pre>
+          <p>Note that there is also a transition to fade the image in and out. If you are using jQuery, you could do this via <code>fadeIn()</code> and <code>fadeOut()</code> instead.</p>
+        </div>
+        <div class="section" id="logic">
+          <h2><a name="logic"></a>How it is done</h2>
+          <p>What you need from the API are the video data and cue points. So in the <code>templateReady</code> handler, we get references to the VIDEO_PLAYER and CUE_POINTS modules. Then we call the <code>getCurrentVideo</code> method of the VIDEO_PLAYER module, get the JSON data from the <code>longDescription</code> property of the video DTO, and parse it into a navtive object.</p>
+          <p>Next, we add an event listener for cue points. In the handler, we check to see if the point is named ctaStart or ctaEnd (if neither, we do nothing), and then change the class of the image to show or hide it. There is simple counter set up to loop through the array of image objects as the video moves through the cue points, returning back to zero when we reach the end of the array. The full code is shown in the <strong>Code</strong> section below.</p>
+        </div>
+        
+      </div>
+    </div>
+    <!-- bcl scripts ============================================================ -->
+    <script src="http://docs.brightcove.com/en/scripts/jquery-1.9.0.min.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/handlebars-1.0.rc.2.js"></script>
+    <script type="text/javascript">
+      /******** Any scripts specific to page samples should go here *********/
+      /**** Brightcove Learning namespace ****/
+      var BCL = {};
+      // get references to elements for the CTA
+      BCL.imageDiv = document.getElementById("BCL-image");
+      BCL.image = document.getElementById("cta");
+      BCL.clickThru = document.getElementById("ctaLink");
+      //counter for images
+      BCL.imageIndex = 0;
+      /**** template loaded event handler ****/
+      BCL.onTemplateLoad = function (experienceID) {
+        BCL.log("template load");
+        // get a reference to the player and API Modules and Events
+        BCL.player = brightcove.api.getExperience(experienceID);
+        BCL.APIModules = brightcove.api.modules.APIModules;
+        BCL.cuePointEvent = brightcove.api.events.CuePointEvent;
+      };
+      /**** template ready event handler ****/
+      BCL.onTemplateReady = function (evt) {
+        BCL.log("template ready");
+        // get references to modules
+        BCL.videoPlayer = BCL.player.getModule(BCL.APIModules.VIDEO_PLAYER);
+        BCL.cuePointsModule = BCL.player.getModule(BCL.APIModules.CUE_POINTS);
+        BCL.cuePointsModule.addEventListener(BCL.cuePointEvent.CUE, BCL.onCuePoint);
+        // get the long description and parse it
+        BCL.videoPlayer.getCurrentVideo( function ( videoDTO ) {
+          BCL.imageData = JSON.parse(videoDTO.longDescription);
+          BCL.log(BCL.imageData);
+        })
+      };
+      /**** Cue points handler ****/
+      BCL.onCuePoint = function(event) {
+        BCL.log("cue point");
+        if (event.cuePoint.name === "ctaStart") {
+          BCL.clickThru.setAttribute("href", BCL.imageData.CTAImages[BCL.imageIndex].linkURL);
+          BCL.image.setAttribute("src", BCL.imageData.CTAImages[BCL.imageIndex].imageURL);
+          BCL.image.setAttribute("class", "opaque");
+          // hack for IE
+          BCL.image.src = BCL.imageData.CTAImages[BCL.imageIndex].imageURL;
+          BCL.image.className = "opaque";
+        }
+        else if (event.cuePoint.name === "ctaEnd") {
+          BCL.image.setAttribute("class", "transparent");
+          BCL.image.className = "transparent";
+          // increment imageIndex or go back to 0
+          if (BCL.imageIndex < (BCL.imageData.CTAImages.length - 1)) {
+            BCL.imageIndex++;
+          } else {
+            BCL.imageIndex = 0;
+          }
+        }
+      };
+
+      /*************************
+      switch for flash/html
+      *************************/
+      // for development purposes only: reopen page with HTML5 player
+      BCL.switchToHTML5 = function() {
+          var separator = "?";
+          if (document.location.href.indexOf("?", 0) > -1) {
+           separator = "&";
+          };
+          window.location = document.location.href + separator + "forceHTML=true";
+      };
+      // for development purposes only: switch back to Flash
+      BCL.switchToFlash = function () {
+          var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
+          window.location = document.location.href.substring(0, startOfQuery);
+      };
+      /*************************
+      logging
+      *************************/
+      BCL.log = function (message) {
+        if (window["console"] && console["log"]) {
+          var d = new Date();
+          console.log(d + ": ");
+          console.log(message);
+        };
+      };
+    </script>
+    
+  </body>
+</html>

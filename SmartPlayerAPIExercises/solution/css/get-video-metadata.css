@@ -1,0 +1,17 @@
+/*********************************************
+styles for get video metadata sample
+*********************************************/
+#video-info {
+  border: 1px #999 solid;
+  border-radius: 5px;
+  background-color: #F5F5F5;
+  margin-right: 10px;
+  padding: 5px;
+  width: 400px;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <!-- change title to match the h1 heading -->
+    <title>Smart Player API Sample: Get Video Metadata</title>
+    
+    <link href="http://files.brightcove.com/proxima-nova/font-faces.css" rel="stylesheet" type="text/css" />
+    <link href="./css/api-samples.css" rel="stylesheet" type="text/css" />
+    <link href="./css/get-video-metadata.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <div id="main">
+        <!-- id of first section is always "top" -->
+        <div id="top" class="section">
+          <h1><a name="top"></a>Smart Player API Sample: Get Video Metadata</h1>
+          <p>This simple example gets the metadata for the video currently in the player and displays some of it below the player</p>
+          <div class="text-warning">
+            <h3>Note</h3>
+            <p>This sample uses the <a href="http://handlebars.org">Handlebars</a> templating system to simplify merging data with HTML to be injected into the DOM &mdash; all functionality can be replicated in ordinary JavaScript</p>
+          </div>
+        </div>
+        <!-- every div class section must have an id -->
+        <div class="section" id="resources">
+          <h2><a name="resources"></a>API resources used</h2>
+          <p>This sample uses the following API resources</p>
+          <h4>Modules and methods</h4>
+          <ul>
+            <li>VIDEO_PLAYER
+              <ul>
+                <li>getCurrentVideo()</li>
+                <li>getVideoDuration()</li>
+              </ul>
+            </li>  
+          </ul>
+          <h4>Events</h4>
+          <ul>
+            <li>templateLoad</li>
+            <li>templateReady</li>
+            <li></li>  
+          </ul>
+        </div>
+        <div class="section" id="player">
+          <!-- h2 contents will be in page navigation label - 21 characters (including spaces) maximum -->
+          <h2><a name="player"></a>The Player</h2>
+          <p>A standard Chromeless Video Player is used for this sample.</p>
+          <p class="text-warning">Note that the buttons below are for development purposes only &mdash; do not use in production.</p>
+          <div id="modeSwitch">
+            <span class="button" onclick="BCL.switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</span>
+            <span class="button" onclick="BCL.switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</span>
+          </div>
+          <div class="player-block">
+           <div id="video-info" class="float-left"></div>
+            <!-- Start of Brightcove Player -->
+            <script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+            <object id="myExperience921449663001" class="BrightcoveExperience">
+              <param name="bgcolor" value="#FFFFFF" />
+              <param name="width" value="480" />
+              <param name="height" value="270" />
+              <param name="playerID" value="2079935931001" />
+              <param name="playerKey" value="AQ~~,AAAA1oy1bvE~,ALl2ezBj3WE0z3yX6Xw29sdCvkH5GCJv" />
+              <param name="isVid" value="true" />
+              <param name="isUI" value="true" />
+              <param name="dynamicStreaming" value="true" />
+              <param name="@videoPlayer" value="921449663001" />
+              <!-- smart player api params -->
+              <param name="includeAPI" value="true" />
+              <param name="templateLoadHandler" value="BCL.onTemplateLoad" />
+              <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+            </object>
+            <script type="text/javascript">brightcove.createExperiences();</script>
+            <!-- End of Brightcove Player -->
+         </div>
+        </div>
+        <div class="section" id="logic">
+          <h2><a name="logic"></a>How it is done</h2>
+          <p>Since we are getting the video metadata immediately, everything can be done in the <code>templateReady</code> handler. We get a reference to the VIDEO_PLAYER module, and then call <code>getCurrentVideo()</code>. Properties of the returned video DTO are injected into an empty <code>div</code> tag below the player. We then call the <code>getVideoDuration()</code> method to get the video duration and add that to the <code>div</code> &mdash; note that the video <code>length</code> was already there in the video DTO returned by <code>getCurrentVideo()</code>, but in milliseconds. The <code>getVideoDuration()</code> has an optional argument to format the duration, saving us from having to do that manually to the <code>length</code></p>
+          <p>To create the HTML string containing the video DTO data, we use the Handlebars templating system &mdash; this is just a JavaScript library, so it is not essential to the functioning of the sample.</p>
+          <p>See the full code in the <strong>Code</strong> section below.</p>
+        </div>
+        
+      </div>
+    </div>
+    <!-- bcl scripts ============================================================ -->
+    <script src="http://docs.brightcove.com/en/scripts/jquery-1.9.0.min.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/handlebars-1.0.rc.2.js"></script>
+    <script type="text/javascript">
+      /******** Any scripts specific to page samples should go here *********/
+      /**** Brightcove Learning namespace ****/
+      var BCL = {};
+      BCL.videoInfoTemplate = "<h3>About this video:</h3><h4>Title: {{displayName}}</h4><p>Description: {{shortDescription}}</p><p>Tags:</p><ul>{{#tags}}<li>{{.}}</li>{{/tags}}</ul>";
+      /**** template loaded event handler ****/
+      BCL.onTemplateLoad = function (experienceID) {
+        // get a reference to the player and API Modules and Events
+        BCL.player = brightcove.api.getExperience(experienceID);
+        BCL.APIModules = brightcove.api.modules.APIModules;
+      };
+      /**** template ready event handler ****/
+      BCL.onTemplateReady = function (evt) {
+        var duration = {}, 
+        template, 
+        data, 
+        results, 
+        videoInfo = document.getElementById("video-info");
+        // get references to modules
+        BCL.videoPlayer = BCL.player.getModule(BCL.APIModules.VIDEO_PLAYER);
+        BCL.videoPlayer.getCurrentVideo( function (videoDTO) {
+         // merge video data into Handlebars template
+         template = Handlebars.compile(BCL.videoInfoTemplate);
+         data = videoDTO;
+         results = template(data);
+         // inject results
+         videoInfo.innerHTML = results;
+        });
+        // get the duration for the video
+        BCL.videoPlayer.getVideoDuration( true, function(duration) {
+          videoInfo.innerHTML += "<p>Duration: " + duration + "</p>";
+        });
+      };
+      /*************************
+      switch for flash/html
+      *************************/
+      // for development purposes only: reopen page with HTML5 player
+      BCL.switchToHTML5 = function() {
+          var separator = "?";
+          if (document.location.href.indexOf("?", 0) > -1) {
+           separator = "&";
+          };
+          window.location = document.location.href + separator + "forceHTML=true";
+      };
+      // for development purposes only: switch back to Flash
+      BCL.switchToFlash = function () {
+          var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
+          window.location = document.location.href.substring(0, startOfQuery);
+      };
+      /*************************
+      logging 
+      *************************/
+      BCL.log = function (message) {
+        if (window["console"] && console["log"]) {
+          var d = new Date();
+          console.log(d + ": ");
+          console.log(message);
+        };
+      };
+    </script>
+    		
+  </body>
+</html>

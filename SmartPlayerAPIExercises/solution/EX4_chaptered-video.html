@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <!-- change title to match the h1 heading -->
+    <title>Smart Player API Sample: Chaptered Video</title>
+    
+    <link href="http://files.brightcove.com/proxima-nova/font-faces.css" rel="stylesheet" type="text/css" />
+    <link href="http://docs.brightcove.com/en/smart-player-api/samples/css/api-samples.css" rel="stylesheet" type="text/css" />
+    <link href="./css/chaptered-video.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <div id="main">
+        <!-- id of first section is always "top" -->
+        <div id="top" class="section">
+          <h1><a name="top"></a>Smart Player API Sample: Chaptered Video</h1>
+          <p>This example reads chapter information out of video cue points and displays the chapters like a playlist.</p>
+          <div class="text-warning">
+            <h3>Note</h3>
+            <ul>
+              <li>This sample uses the <a href="http://jquery.org">jQuery</a> JavaScript library [1.9.0] to simplify code &mdash; all functionality can be replicated in ordinary JavaScript</li>
+              <li>This sample uses the <a href="http://handlebars.org">Handlebars</a> templating system to simplify merging data with HTML to be injected into the DOM &mdash; all functionality can be replicated in ordinary JavaScript</li>
+            </ul>
+          </div>
+        </div>
+        <!-- every div class section must have an id -->
+        <div class="section" id="resources">
+          <h2><a name="resources"></a>API resources used</h2>
+          <p>This sample uses the following API resources</p>
+          <h4>Modules and methods</h4>
+          <ul>
+            <li>CUE_POINTS
+              <ul>
+                <li>getCuePoints()</li>
+              </ul>
+          </li>
+            <li>VIDEO_PLAYER
+              <ul>
+                <li>play()</li>
+                <li>getIsPlaying()</li>
+                <li>seek()</li>
+              </ul>
+            </li>
+          </ul>
+          <h4>Events</h4>
+          <ul>
+            <li>templateLoad</li>
+            <li>templateReady</li>
+            <li>Media: BEGIN</li>
+            <li>Media: PROGRESS</li>
+          </ul>
+        </div>
+        <div class="section" id="player">
+          <!-- h2 contents will be in page navigation label - 21 characters (including spaces) maximum -->
+          <h2><a name="player"></a>The Player</h2>
+          <p>A standard Chromeless Video Player is used for this sample.</p>
+          <p class="text-warning">Note that the buttons below are for development purposes only &mdash; do not use in production.</p>
+          <div id="modeSwitch">
+            <span class="button" onclick="BCL.switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</span>
+            <span class="button" onclick="BCL.switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</span>
+          </div>
+          <div class="player-outer-container">
+            <div id="chapterlist_player" class="player-block">
+            <!-- Start of Brightcove Player -->
+            <script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+            <object id="myExperience921449663001" class="BrightcoveExperience">
+              <param name="bgcolor" value="#FFFFFF" />
+              <param name="width" value="480" />
+              <param name="height" value="270" />
+              <param name="playerID" value="2079935931001" />
+              <param name="playerKey" value="AQ~~,AAAA1oy1bvE~,ALl2ezBj3WE0z3yX6Xw29sdCvkH5GCJv" />
+              <param name="isVid" value="true" />
+              <param name="isUI" value="true" />
+              <param name="dynamicStreaming" value="true" />
+              <param name="@videoPlayer" value="1595052160001" />
+              <!-- smart player api params -->
+              <param name="includeAPI" value="true" />
+              <param name="templateLoadHandler" value="BCL.onTemplateLoad" />
+              <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+            </object>
+            <script type="text/javascript">brightcove.createExperiences();</script>
+            <!-- End of Brightcove Player -->
+          </div>
+          <div id="BCL_chapterTicks"></div>
+          <div id="BCL_chapterlist"></div>
+        </div>
+      </div>
+      <div class="section" id="logic">
+        <h2><a name="logic"></a>How it is done</h2>
+        <p>Like the <a href="http://docs.brightcove.com/en/smart-player-api/samples/call-to-action.html">Call to Action</a> sample, this one uses cue points. In this case, the cue points are set at the beginning of the segments of the video that we want to display as chapters. The name of the chapter is stored as the name of the code cue point, and a URL for a thumbnail image is store as the cue point metadata.</p>
+        <p>In the <code>templateReady</code> event handler, we get references to the VIDEO_PLAYER and CUE_POINTS modules. Then we call the VIDEO_PLAYER <code>getCurrentVideo()</code> method to retrieve the video DTO for the video in the player. We pass the video ID to another function called <code>BCL.getCuePoints()</code>, and we also save the video <code>length</code> (converted to seconds) as <code>BCL.videoLength</code> for later use.</p>
+        <p>In the <code>BCL.getCuePoints()</code> function, we call the CUE_POINTS <code>getCuePoints()</code> method to retrive the cue point array for the video. The array needs to be modified in a couple of ways:</p>
+        <ul>
+          <li>The order of the array items is random, so we sort it using the <code>time</code> property of the cue points.</li>
+          <li>Video Cloud automatically includes ad cue points at the beginning and end of the video for preroll and postroll ad requests &mdash; we do not need these, so we remove them from the array. Since the array is now ordered by time, we know that these are the first and last items.</li>
+        </ul>
+        <p>Now we start the video using the VIDEO_PLAYER <code>play()</code> method. We could go ahead and display the list of chapters, but there's a danger in that &mdash; navigating to the chapters will use the VIDEO_PLAYER <code>seek()</code> method. This method fails silently if the video is not playing &mdash; even if it is buffering data. So instead, we set up an event listener for the media BEGIN event, and inject the chapter list into the page (here using the Handlebars templating system) when that fires.</p>
+        <p>When a chapter item is clicked, the <code>BCL.playChapter()</code> function is executed. Again, to avoid failure when we call the <code>seek()</code> method, we first using the VIDEO_PLAYER <code>getIsPlaying()</code> method to determine if the video is playing (it could be paused or buffering). If this call returns <code>false</code>, the function calls itself again and keeps trying until it gets a <code>true</code> response.</p>
+        <h3>Highlight the current chapter</h3>
+        <p>As a cosmetic touch, we highlight the current chapter in the list. Because we want to highlight the chapter whether it was reached by clicking to it or just in the course of playback, we set up a separate <code>BCL.highlightItem()</code> function. The function get called by the click handler for the items, and also by a handler for media PROGRESS events. To make the latter work, we construct an array of objects that contain the start and end times for each chapter, and loop over this array when PROGRESS events fire, checking to see if the <code>position</code> returned in the PROGRESS event object is within the range for each chapter. This is somewhat inefficient, since PROGRESS events fire about every tenth of second during playback. You could reduce the amount of processing by setting up some additional logic to test only for every fifth or tenth event.</p>
+        <h3>Adding tick marks for chapters on the playhead well (timeline)</h3>
+        <p>One more cosmetic touch adds tick marks for the chapters on the playhead well. The logic for this is simple. The data needed is there in the cue points data array that we are already retrieving, and inserting the tick marks (in this case <code>span</code> elements with a background color and containing that old web developer's friend, the 1x1 transparent PNG image. (The image is not strictly necessary, but helps insure the correct sizing in old browsers.)</p>
+        <p>The rest is CSS and geometry, and that is where things get a little complicated. The playhead marks, of course, not absolute but relative time, so the correspondence of any position in the video depends on the overall length of the video and the playhead well element. To take care of that, we measured the length of the playhead well, get the video length from the video properties, and add an extra property to the cue points objects which is the percentage of the overall video length represented by the chapter position, multiplied by the playhead well length &mdash; this gives us the left offest we need when positioning the tick marks. Unfortunately, though, the position and length of the playhead well is not the same in the Flash and HTML versions of the player, so we all so need to get the <code>type</code> property from the BrightcoveExperience object and set those variables according to the player type.</p>
+        <p>(It gets a little worse here for the HTML5 player, because they are implemented differently in different browsers. This sample was developed for Safari. If you view it in Chrome in the HTML mode, you will see that the tick marks are not positioned correctly. You could overcome this using browser detection and some additional conditional logic.)</p>
+        <p>The span tags are injected into a <code>div</code> element, using a Handlebars template like the one we used for the chapter items. CSS positioning takes care of locating them in the correct positions. Schematically, the layout looks like this:</p>
+        <div><img src="./assets/chaptered-player-layout.png" alt="chaptered-player-layout.png"></div>
+        <p>Finally, since this is a chromeless video player, we want the chapter ticks to be visible only if the media controls are. We control this by setting <code>mouseover</code> and <code>mouseout</code> event listeners for the <code>div</code> that contains the player. You will notice that the hiding and showing is done by changing the background color of the <code>span</code> &mdash; we prefer this to using the <code>display</code> property (or jQuery <code>hide()</code> and <code>show()</code>) because the latter would remove and reinsert the elements into the DOM, which is expensive and can cause issues with event listeners on the elements. You will also notice the timeout on the shown state for Flash, which we set because if you move the mouse over the player in Flash mode, the controls will appear, but disappear again automatically in about 6.5 seconds.</p>
+        <p>See the full code below.</p>
+      </div>
+      
+      </div>
+    </div>
+    <!-- bcl scripts ============================================================ -->
+    <script src="http://docs.brightcove.com/en/scripts/jquery-1.9.0.min.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/handlebars-1.0.rc.2.js"></script>
+    <script type="text/javascript">
+      /******** Any scripts specific to page samples should go here *********/
+      /**** Brightcove Learning namespace ****/
+      var BCL = {};
+      // Handlebars templates for the chapter list and tick marks
+      BCL.chapterlistTemplate = "{{#cuePointData}}<div class=\"chapterlist-item\" data-time=\"{{time}}\"><img height=\"40\" width=\"72\" src=\"{{metadata}}\"/><h4>{{name}}</h4></div>{{/cuePointData}}";
+      BCL.chapterTickTemplate = "{{#cuePointData}}<span class=\"chapterTickMark\" style=\"left:{{tickPosition}}px;\" data-time=\"{{time}}\"><img height=\"10\" width=\"3\" src=\"./assets/1x1.png\" alt=\"{{name}}\" /></span>{{/cuePointData}}";
+      /**** template loaded event handler ****/
+      BCL.onTemplateLoad = function (experienceID) {
+        // get a reference to the player and API Modules and Events
+        BCL.player = brightcove.api.getExperience(experienceID);
+        BCL.APIModules = brightcove.api.modules.APIModules;
+        BCL.mediaEvent = brightcove.api.events.MediaEvent;
+        /* adjust variables for positioning of chapter ticks for player type
+        * these are specific to the player and page layout:
+        * length of the playhead well
+        * and position of the playhead well
+        * relative to the top-left corner of the player
+        */
+        BCL.playerType = BCL.player.type;
+        if (BCL.playerType == "html") {
+          BCL.timelineLength = 290;
+          $("#BCL_chapterTicks").addClass("htmlPlayer");
+        } else {
+          BCL.timelineLength = 210;
+          $("#BCL_chapterTicks").addClass("flashPlayer");
+        };
+      };
+      /**** template ready event handler ****/
+      BCL.onTemplateReady = function (evt) {
+        // get references to modules
+        BCL.videoPlayer = BCL.player.getModule(BCL.APIModules.VIDEO_PLAYER);
+        BCL.cuePointsModule = BCL.player.getModule(BCL.APIModules.CUE_POINTS);
+        // fetch the video data and process the cuepoint
+        BCL.videoPlayer.getCurrentVideo( function(videoDTO) {
+				  // call getCuePoints
+				  BCL.getCuePoints(videoDTO.id);
+				  BCL.videoLength = videoDTO.length/1000;
+				});
+				// add event listeners for media begin and progress events
+				BCL.videoPlayer.addEventListener(BCL.mediaEvent.BEGIN, BCL.onMediaBegin);
+				BCL.videoPlayer.addEventListener(BCL.mediaEvent.PROGRESS, BCL.onMediaProgress);
+      };
+      /**** function to process the cue points ****/
+      BCL.getCuePoints = function(videoID) {
+			  BCL.cuePointsModule.getCuePoints(videoID, function(cuePointData) {
+			    // make an object to pass to Handlebars
+			    BCL.cuePointDataObj = {};
+			    // sort the array to get cue points in order
+			    cuePointData.sort( function(a,b) {
+			      return a.time - b.time;
+			    });
+			    // remove the preroll and postroll cue points
+			    cuePointData.splice(0,1);
+			    cuePointData.splice((cuePointData.length -1),1);
+			    /*
+			    * add tick marks
+			    * these are based on the actual size of the player
+			    * and length of the timeline
+			    * and we don't need one for the
+			    */
+			    for (var i = 0; i < cuePointData.length; i++) {
+  			      cuePointData[i].tickPosition = (cuePointData[i].time / BCL.videoLength) * BCL.timelineLength;
+			    };
+			    // add the cue point data to the data object for Handlebars
+			    BCL.cuePointDataObj.cuePointData = cuePointData;
+			    // build an array of time ranges
+			    BCL.timeRanges = [];
+			    for (var i = 0; i < cuePointData.length; i++) {
+    			    var obj = {};
+    			    var j = i + 1;
+    			    obj.start = cuePointData[i].time;
+    			    obj.chapter = cuePointData[i].name;
+    			    if (i !== (cuePointData.length - 1)) {
+      			    obj.end = cuePointData[j].time;
+    			    } else {
+      			    obj.end = BCL.videoLength;
+    			    }
+    			    BCL.timeRanges.push(obj);
+			    }
+			    // start the video - won't work on mobile devices!
+			    BCL.videoPlayer.play();
+			  })
+			};
+      /**** function to build the chapter list ****/
+      BCL.buildchapterlist = function () {
+        var template = Handlebars.compile(BCL.chapterlistTemplate);
+        var data = BCL.cuePointDataObj;
+        var results = template(data);
+        $("#BCL_chapterlist").html(results);
+        // add event listener for chapterlist items
+        $(".chapterlist-item").on("click", function (evt) {
+          var $this = $(this);
+          // highlight selected item
+          BCL.highlightItem($this);
+          // play the video
+          BCL.playChapter($this.attr("data-time"));
+        });
+      };
+      /**** function to add chapter tick marks ****/
+      BCL.addTickMarks= function () {
+        var template = Handlebars.compile(BCL.chapterTickTemplate);
+        var data = BCL.cuePointDataObj;
+        var results = template(data);
+        $("#BCL_chapterTicks").html(results);
+        // hide the tick marks till there's a hover over the player
+        BCL.hideTicks();
+        // add event listener for chapter ticks
+        $(".chapterTickMark").on("click", function (evt) {
+          var $this = $(this);
+          // play the video
+          BCL.playChapter($this.attr("data-time"));
+        });
+        // add listen for player hover events to show/hide tick marks
+        $(".player-outer-container").on ("mouseover", BCL.showTicks);
+        $(".player-outer-container").on("mouseout", BCL.hideTicks );
+      };
+      /* function to hide tick marks*/
+      BCL.hideTicks = function () {
+        BCL.log("mouseout");
+        $(".chapterTickMark").css("background-color","transparent");
+      };
+      /* function to show tick marks */
+      BCL.showTicks = function () {
+        $(".chapterTickMark").css("background-color", "#F3951D");
+        // if flash, wait 5.5 sec, then hide again to match media controls behavior
+        if (BCL.playerType == "flash") {
+          var t = setTimeout(BCL.hideTicks, 5500);
+        }
+      };
+      /**** function to highlight current chapter ****/
+      BCL.highlightItem = function ($item) {
+        $item.siblings().removeClass("chapterlist-item-selected");
+        $item.addClass("chapterlist-item-selected");
+      };
+      /**** media begin handler ****/
+      BCL.onMediaBegin = function (evt) {
+        // populate the template with data
+			  BCL.buildchapterlist();
+			  // add tick marks
+			  BCL.addTickMarks();
+      };
+      BCL.onMediaProgress = function (evt) {
+        for (var i = 0; i < BCL.timeRanges.length; i++) {
+          if (evt.position > BCL.timeRanges[i].start && evt.position < BCL.timeRanges[i].end) {
+            BCL.highlightItem($(".chapterlist-item").eq(i));
+            break;
+          }
+        }
+      };
+      /**** function to play a chapter ****/
+			BCL.playChapter = function(time) {
+			  // if the video is not playing, start it and function calls itself again
+			  BCL.videoPlayer.getIsPlaying( function(isPlaying) {
+			    if (isPlaying == true) {
+			      BCL.videoPlayer.seek(time);
+			    }
+			    else {
+			      // function recalls itself till result is true
+			      BCL.videoPlayer.play();
+			      BCL.playChapter(time);
+			    }
+			  });
+			}
+      /*************************
+      switch for flash/html
+      *************************/
+      // for development purposes only: reopen page with HTML5 player
+      BCL.switchToHTML5 = function() {
+          var separator = "?";
+          if (document.location.href.indexOf("?", 0) > -1) {
+           separator = "&";
+          };
+          window.location = document.location.href + separator + "forceHTML=true";
+      };
+      // for development purposes only: switch back to Flash
+      BCL.switchToFlash = function () {
+          var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
+          window.location = document.location.href.substring(0, startOfQuery);
+      };
+      /*************************
+      logging
+      *************************/
+      BCL.log = function (message) {
+        if (window["console"] && console["log"]) {
+          var d = new Date();
+          console.log(d + ": ");
+          console.log(message);
+        };
+      };
+    </script>
+
+  </body>
+</html>
