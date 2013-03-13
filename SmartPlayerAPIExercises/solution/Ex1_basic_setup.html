@@ -140,7 +140,6 @@
               // get references to modules
               videoPlayer = player.getModule(APIModules.VIDEO_PLAYER);
               videoPlayer.getCurrentVideo( function(videoDTO) {
-                logit(videoDTO);
                 videoName.innerHTML = "Currently watching: <strong>" + videoDTO.displayName + "</strong>";
               } );
               videoPlayer.addEventListener(mediaEvent.PROGRESS, BCLS.onProgress);
