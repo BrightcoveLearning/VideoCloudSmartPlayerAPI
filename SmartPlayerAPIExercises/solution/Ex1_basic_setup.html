@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Player API Exercise 1</title>
+		<title>Player API Exercise 1: Basic Setup</title>
     <link href="http://files.brightcove.com/proxima-nova/font-faces.css" rel="stylesheet" type="text/css">
-    <link href="./css/api-samples.css" rel="stylesheet" type="text/css">
+    <style>
+      body {
+        font-family: 'ProximaNovaA-Regular', "Helvetica Neue", Arial, Helvetica, sans-serif;
+        color: #333;
+      }
+      a {
+        color: #63A7CE;
+      }
+      .button {
+        font-size: xx-small;
+        margin-bottom: 20px;
+        padding: 5px;
+        border: 1px #999 solid;
+        border-radius: 5px;
+        background-color: #fefdff;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fefdff), to(#e9eff3));
+        background-image: -webkit-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: -moz-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: -o-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: -ms-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: linear-gradient(top, #fefdff, #e9eff3);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fefdff', EndColorStr='#e9eff3');
+      }
+      .text-warning {
+        background-color: #FCF8E1;
+        border: 1px #5A4320 solid;
+        border-radius: 5px;
+        color: #5A4320;
+        padding: 5px;
+      }
+      #progressBar {
+        background-color:#64AAB2;
+      }
+      .player-block {
+        padding-top: 20px;
+      }
+    </style>
 	</head>
 	<body>
     <div id="main"
-		  <!-- id of first section is always "top" -->
 		  <div id="top" class="section">
 		    <h1><a name="top"></a>Smart Player API Samples: Basic Setup</h1>
 		    <p>This example shows the basic setup for working with the Smart Player API, including:</p>
@@ -48,9 +83,9 @@
 		    <p>A standard Chromeless Video Player is used for this sample.</p>
 		    <p class="text-warning">Note that the buttons below are for development purposes only &mdash; do not use in production.</p>
 		    <div id="modeSwitch">
-		      <span class="button" onclick="BCL.switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</span>
-		      <span class="button" onclick="BCL.switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</span>
-		    </div>
+          <span class="button" id="switchToHTML5" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</span>
+          <span class="button" id="switchToFlash" style="margin-bottom: 20px;">Switch to Flash Player</span>
+        </div>
 		    <div class="player-block">
 		      <!-- Start of Brightcove Player -->
 		      <script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
@@ -66,8 +101,8 @@
 		        <param name="@videoPlayer" value="921449663001" />
 		        <!-- smart player api params -->
 		        <param name="includeAPI" value="true" />
-		        <param name="templateLoadHandler" value="BCL.onTemplateLoad" />
-		        <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+		        <param name="templateLoadHandler" value="BCLS.onTemplateLoad" />
+		        <param name="templateReadyHandler" value="BCLS.onTemplateReady" />
 		      </object>
 		      <script type="text/javascript">brightcove.createExperiences();</script>
 		      <!-- End of Brightcove Player -->
@@ -76,69 +111,51 @@
 		    </div>
 		  </div>
 		</div>
-    <script src="http://docs.brightcove.com/en/scripts/handlebars-1.0.rc.2.js"></script>
+    <!-- scripts for flash/html switch and logging -->
+    <script src="http://docs.brightcove.com/en/scripts/jquery-1.9.1.min.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/flashHTMLswitch.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/log.js"></script>
     <script type="text/javascript">
       /******** Any scripts specific to page samples should go here *********/
       /**** Brightcove Learning namespace ****/
-      var BCL = {};
-      BCL.progress = document.getElementById("progress");
-      /**** template loaded event handler ****/
-      BCL.onTemplateLoad = function (experienceID) {
-        // get a reference to the player and API Modules and Events
-        BCL.player = brightcove.api.getExperience(experienceID);
-        BCL.APIModules = brightcove.api.modules.APIModules;
-        BCL.adEvent = brightcove.api.events.AdEvent;
-        BCL.captionsEvent = brightcove.api.events.CaptionsEvent;
-        BCL.contentEvent = brightcove.api.events.ContentEvent;
-        BCL.cuePointEvent = brightcove.api.events.CuePointEvent;
-        BCL.mediaEvent = brightcove.api.events.MediaEvent;
-      };
-      /**** template ready event handler ****/
-      BCL.onTemplateReady = function (evt) {
-        // get references to modules
-        BCL.videoPlayer = BCL.player.getModule(BCL.APIModules.VIDEO_PLAYER);
-        BCL.videoPlayer.getCurrentVideo( function(videoDTO) {
-          BCL.log(videoDTO);
-          document.getElementById("videoName").innerHTML = "Currently watching: <strong>" + videoDTO.displayName + "</strong>";
-        } );
-        BCL.videoPlayer.addEventListener(BCL.mediaEvent.PROGRESS, BCL.onProgress);
-        BCL.progressBar = document.getElementById("progressBar");
-      };
-      /**** progress event handler ****/
-      BCL.onProgress = function(evt) {
-        if ((evt.duration - evt.position) > .1) {
-          BCL.progressBar.innerHTML += "&nbsp;";
-        } else {
-          BCL.videoPlayer.removeEventListener(BCL.mediaEvent.PROGRESS, BCL.onProgress);
-          BCL.progress.innerHTML += " Video complete";
-        }
-      };
-      /*************************
-      switch for flash/html
-      *************************/
-      // for development purposes only: reopen page with HTML5 player
-      BCL.switchToHTML5 = function() {
-          var separator = "?";
-          if (document.location.href.indexOf("?", 0) > -1) {
-           separator = "&";
-          };
-          window.location = document.location.href + separator + "forceHTML=true";
-      };
-      // for development purposes only: switch back to Flash
-      BCL.switchToFlash = function () {
-          var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
-          window.location = document.location.href.substring(0, startOfQuery);
-      };
-      /*************************
-      logging
-      *************************/
-      BCL.log = function (message) {
-        if (window["console"] && console["log"]) {
-          var d = new Date();
-          console.log(d + ": ");
-          console.log(message);
-        };
-      };
+      var BCLS = (function () {
+        var progress = document.getElementById("progress"),
+            progressBar = document.getElementById("progressBar"),
+            videoName = document.getElementById("videoName"),
+            player,
+            APIModules,
+            mediaEvent,
+            videoPlayer;
+        // public functions
+        return {
+          /**** template loaded event handler ****/
+            onTemplateLoad : function (experienceID) {
+              // get a reference to the player and API Modules and Events
+              player = brightcove.api.getExperience(experienceID);
+              APIModules = brightcove.api.modules.APIModules;
+              mediaEvent = brightcove.api.events.MediaEvent;
+            },
+            /**** template ready event handler ****/
+            onTemplateReady : function (evt) {
+              // get references to modules
+              videoPlayer = player.getModule(APIModules.VIDEO_PLAYER);
+              videoPlayer.getCurrentVideo( function(videoDTO) {
+                logit(videoDTO);
+                videoName.innerHTML = "Currently watching: <strong>" + videoDTO.displayName + "</strong>";
+              } );
+              videoPlayer.addEventListener(mediaEvent.PROGRESS, BCLS.onProgress);
+            },
+            /**** progress event handler ****/
+            onProgress : function(evt) {
+              if ((evt.duration - evt.position) > .1) {
+                progressBar.innerHTML += "&nbsp;";
+              } else {
+                videoPlayer.removeEventListener(mediaEvent.PROGRESS, BCLS.onProgress);
+                progress.innerHTML += " Video complete";
+              }
+            }
+          }
+        })();
     </script>
 	</body>
 </html>

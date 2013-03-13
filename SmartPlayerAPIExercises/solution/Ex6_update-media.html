@@ -5,13 +5,41 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
     <!-- change title to match the h1 heading -->
     <title>Smart Player API Sample: Update Media</title>
-    
     <link href="http://files.brightcove.com/proxima-nova/font-faces.css" rel="stylesheet" type="text/css">
-    <link href="./css/api-samples.css" rel="stylesheet" type="text/css">
+    <style>
+      body {
+        font-family: 'ProximaNovaA-Regular', "Helvetica Neue", Arial, Helvetica, sans-serif;
+        color: #333;
+      }
+      a {
+        color: #63A7CE;
+      }
+      .button {
+        font-size: xx-small;
+        margin-bottom: 20px;
+        padding: 5px;
+        border: 1px #999 solid;
+        border-radius: 5px;
+        background-color: #fefdff;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fefdff), to(#e9eff3));
+        background-image: -webkit-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: -moz-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: -o-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: -ms-linear-gradient(top, #fefdff, #e9eff3);
+        background-image: linear-gradient(top, #fefdff, #e9eff3);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fefdff', EndColorStr='#e9eff3');
+      }
+      .text-warning {
+        background-color: #FCF8E1;
+        border: 1px #5A4320 solid;
+        border-radius: 5px;
+        color: #5A4320;
+        padding: 5px;
+      }
+    </style>
   </head>
   <body>
       <div id="main">
-        <!-- id of first section is always "top" -->
         <div id="top" class="section">
           <h1><a name="top"></a>Smart Player API Sample: Update Media</h1>
           <p>This sample uses the <code>updateMedia()</code> of the CONTENT module to modify properties of the current video in the player. The changes only affect the video DTO on the client, not the video in your Video Cloud media library. Here <code>updateMedia</code> is used to remove the video name that is automatically displayed in the upper right portion of the Chromeless Video Player overlay. The overlay itself cannot be modified through the API (or BEML), so the only way to remove this display is to remove <code>displayName</code> data.</p>
@@ -36,13 +64,13 @@
                   </ul>
                 </li>
               </ul>
-            </li>  
+            </li>
           </ul>
           <h4>Events</h4>
           <ul>
             <li>templateLoad</li>
             <li>templateReady</li>
-            <li></li>  
+            <li></li>
           </ul>
         </div>
         <div class="section" id="player">
@@ -51,9 +79,10 @@
           <p>A standard Chromeless Video Player is used for this sample.</p>
           <p class="text-warning">Note that the buttons below are for development purposes only &mdash; do not use in production.</p>
           <div id="modeSwitch">
-            <span class="button" onclick="BCL.switchToHTML5()" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</span>
-            <span class="button" onclick="BCL.switchToFlash()" style="margin-bottom: 20px;">Switch to Flash Player</span>
+            <span class="button" id="switchToHTML5" style="margin-bottom: 20px;margin-right: 10px;">Switch to HTML5 Player</span>
+            <span class="button" id="switchToFlash" style="margin-bottom: 20px;">Switch to Flash Player</span>
           </div>
+          <br />
           <div class="player-block">
             <!-- Start of Brightcove Player -->
             <script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
@@ -69,8 +98,8 @@
               <param name="@videoPlayer" value="921449663001" />
               <!-- smart player api params -->
               <param name="includeAPI" value="true" />
-              <param name="templateLoadHandler" value="BCL.onTemplateLoad" />
-              <param name="templateReadyHandler" value="BCL.onTemplateReady" />
+              <param name="templateLoadHandler" value="BCLS.onTemplateLoad" />
+              <param name="templateReadyHandler" value="BCLS.onTemplateReady" />
             </object>
             <script type="text/javascript">brightcove.createExperiences();</script>
             <!-- End of Brightcove Player -->
@@ -81,64 +110,45 @@
           <p>All you need to do here is call <code>getCurrentVideo()</code>, and then, in the callback, change properties in the videoDTO and call <code>updateMedia()</code>, passing the editing video DTO.</p>
           <p class="text-warning">Note that <code>updateMedia()</code> only works before playback begins.</p>
         </div>
-        
       </div>
     </div>
     <!-- bcl scripts ============================================================ -->
-    <script src="http://docs.brightcove.com/en/scripts/jquery-1.8.3.min.js"></script>
-    <script src="http://docs.brightcove.com/en/scripts/handlebars-1.0.rc.2.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/jquery-1.9.1.min.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/flashHTMLswitch.js"></script>
+    <script src="http://docs.brightcove.com/en/scripts/log.js"></script>
     <script type="text/javascript">
-      /******** Any scripts specific to page samples should go here *********/
       /**** Brightcove Learning namespace ****/
-      var BCL = {};
-      /**** template loaded event handler ****/
-      BCL.onTemplateLoad = function (experienceID) {
-        // get a reference to the player and API Modules and Events
-        BCL.player = brightcove.api.getExperience(experienceID);
-        BCL.APIModules = brightcove.api.modules.APIModules;
-      };
-      /**** template ready event handler ****/
-      BCL.onTemplateReady = function (evt) {
-        // get references to modules
-        BCL.videoPlayer = BCL.player.getModule(BCL.APIModules.VIDEO_PLAYER);
-        BCL.contentModule = BCL.player.getModule(BCL.APIModules.CONTENT);
-        // get the video DTO
-        BCL.videoPlayer.getCurrentVideo( function(videoDTO) {
-          // change the display name
-          videoDTO.displayName = "";
-          // update the video DTO
-          BCL.contentModule.updateMedia(videoDTO, function(newVideoDTO) {
-            // play the video
-            BCL.videoPlayer.play();
-          });
-        });
-      };
-      /*************************
-      switch for flash/html
-      *************************/
-      // for development purposes only: reopen page with HTML5 player
-      BCL.switchToHTML5 = function() {
-          var separator = "?";
-          if (document.location.href.indexOf("?", 0) > -1) {
-           separator = "&";
-          };
-          window.location = document.location.href + separator + "forceHTML=true";
-      };
-      // for development purposes only: switch back to Flash
-      BCL.switchToFlash = function () {
-          var startOfQuery = document.location.href.indexOf("forceHTML", 0) -1;
-          window.location = document.location.href.substring(0, startOfQuery);
-      };
-      /*************************
-      logging 
-      *************************/
-      BCL.log = function (message) {
-        if (window["console"] && console["log"]) {
-          var d = new Date();
-          console.log(d + ": ");
-          console.log(message);
-        };
-      };
+      var BCLS = (function () {
+        var player,
+            APIModules,
+            videoPlayer,
+            contentModule;
+        // public functions
+        return {
+            /**** template loaded event handler ****/
+          onTemplateLoad : function (experienceID) {
+            // get a reference to the player and API Modules and Events
+            player = brightcove.api.getExperience(experienceID);
+            APIModules = brightcove.api.modules.APIModules;
+          },
+          /**** template ready event handler ****/
+          onTemplateReady : function (evt) {
+            // get references to modules
+            videoPlayer = player.getModule(APIModules.VIDEO_PLAYER);
+            contentModule = player.getModule(APIModules.CONTENT);
+            // get the video DTO
+            videoPlayer.getCurrentVideo( function(videoDTO) {
+              // change the display name
+              videoDTO.displayName = "";
+              // update the video DTO
+              contentModule.updateMedia(videoDTO, function(newVideoDTO) {
+                // play the video
+                videoPlayer.play();
+              });
+            });
+          }
+        }
+      })();
     </script>
   </body>
 </html>
