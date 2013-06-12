@@ -1,0 +1,26 @@
+1. Add some HTML
+	"</strong></br>Progress: <span id='elapsedTime'></span>"
+2. Add an event listener in onTemplateReady
+	videoPlayer.addEventListener(brightcove.api.events.MediaEvent.PROGRESS, onProgress);
+3. Create event handler function and log event
+     var onProgress = function(evt){
+     	console.log(evt);
+     };
+4. Run and see progress event displayed lots of times and check what is in event object
+5. Add if statement to display elapsed time
+     var onProgress = function(evt){
+     	//console.log(evt);
+     	if ((evt.duration - evt.position) > .1) {
+    		elapsedTime.innerHTML = evt.position;
+  		}
+     };
+6. Add else statement to remove event listener and display "Video Complete"
+     var onProgress = function(evt){
+     	//console.log(evt);
+     	if ((evt.duration - evt.position) > .1) {
+    		elapsedTime.innerHTML = evt.position;
+  		}else{
+  			videoPlayer.removeEventListener(brightcove.api.events.MediaEvent.PROGRESS, onProgress);
+  			elapsedTime.innerHTML = "Video Complete";
+  		}
+     };
