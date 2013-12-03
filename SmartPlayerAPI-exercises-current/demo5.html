@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Demo 5</title>
+<title>Demo 6</title>
 </head>
 
 <body>
@@ -47,7 +47,13 @@
 
 	<!-- End of Brightcove Player -->
 
-   <script type="text/JavaScript">
+	<div id="videoSelector">
+		<select id="videoSelect">
+		</select>
+	</div>
+
+
+  <script type="text/JavaScript">
      var player,
        APIModules,
        videoPlayer;
@@ -55,12 +61,12 @@
      var onTemplateLoad = function(experienceID){
        player = brightcove.api.getExperience(experienceID);
        APIModules = brightcove.api.modules.APIModules;
-     }
+     };
 
      var onTemplateReady = function(evt){
        videoPlayer = player.getModule(APIModules.VIDEO_PLAYER);
        videoPlayer.play();
-     }
+     };
 	</script>
 
 </body>
